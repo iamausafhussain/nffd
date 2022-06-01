@@ -1,13 +1,29 @@
 import React from "react";
 import "./Navbar.css";
-import { Helmet } from "react-helmet";
 
 function Navbar() {
+  const toggleSearchDesktop = () => {
+    const desktopNav = document.querySelector(".desktop-nav");
+    const searchContainer = document.querySelector(".search-container");
+    const overlay = document.querySelector(".overlay");
+
+    desktopNav.classList.add("hide");
+    searchContainer.classList.remove("hide");
+    overlay.classList.add("show");
+  };
+
+  const toggleCloseDesktop = () => {
+    const desktopNav = document.querySelector(".desktop-nav");
+    const searchContainer = document.querySelector(".search-container");
+    const overlay = document.querySelector(".overlay");
+
+    desktopNav.classList.remove("hide");
+    searchContainer.classList.add("hide");
+    overlay.classList.remove("show");
+  };
+
   return (
     <div className="nav-container">
-      <Helmet>
-        <script src="./main.js" type="text/javascript" />
-      </Helmet>
       <nav>
         <ul className="mobile-nav">
           <li>
@@ -45,7 +61,20 @@ function Navbar() {
             <a href="#">About</a>
           </li>
           <li>
-            <a href="#" className="link-search"></a>
+            <a href="#">Support</a>
+          </li>
+          <li>
+            <a href="#">Only on iShop</a>
+          </li>
+          <li>
+            <a href="#">Career</a>
+          </li>
+          <li>
+            <a
+              href="#"
+              className="link-search"
+              onClick={toggleSearchDesktop}
+            ></a>
           </li>
           <li>
             <a href="#" className="link-bag"></a>
@@ -62,7 +91,7 @@ function Navbar() {
             <input type="text" placeholder="Search apple.com" />
           </form>
         </div>
-        <div className="link-close"></div>
+        <div className="link-close" onClick={toggleCloseDesktop}></div>
 
         <div className="quick-links">
           <h2>Quick Links</h2>
