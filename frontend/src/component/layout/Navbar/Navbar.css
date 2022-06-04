@@ -51,7 +51,7 @@ nav .desktop-nav li a:hover {
 }
 
 .link-logo {
-  background: url("../../images/iShop.svg");
+  background: url("../../../images/iShop.svg");
   display: block;
   background-position: center;
   object-fit: contain;
@@ -61,7 +61,7 @@ nav .desktop-nav li a:hover {
 }
 
 .link-search {
-  background: url("../../images/search-icon.svg");
+  background: url("../../../images/search-icon.svg");
   display: block;
   background-position: center;
   background-size: 18px;
@@ -71,7 +71,7 @@ nav .desktop-nav li a:hover {
 }
 
 .link-bag {
-  background: url("../../images/bag-icon.svg");
+  background: url("../../../images/bag-icon.svg");
   display: block;
   background-position: center;
   background-size: 17px;
@@ -81,7 +81,7 @@ nav .desktop-nav li a:hover {
 }
 
 .link-close {
-  background: url("../../images/close-icon.svg");
+  background: url("../../../images/close-icon.svg");
   display: block;
   background-position: center;
   background-size: 17px;

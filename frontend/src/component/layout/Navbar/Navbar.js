@@ -27,9 +27,6 @@ function Navbar() {
   // Mobile Version
 
   const toggleMenuIcon = () => {
-    const menuIconContainer = document.querySelector(
-      "nav .menu-icon-container"
-    );
     const navContainer = document.querySelector(".nav-container");
     navContainer.classList.toggle("active");
   };
@@ -39,17 +36,22 @@ function Navbar() {
       ".mobile-search-container .search-bar"
     );
     const nav = document.querySelector(".nav-container nav");
-    const searchInput = document.querySelector(
-      ".mobile-search-container input"
-    );
-    const cancelBtn = document.querySelector(
-      ".mobile-search-container .cancel-btn"
-    );
     const desktopNav = document.querySelector(".desktop-nav");
-
     searchBar.classList.add("active");
     nav.classList.add("move-up");
     desktopNav.classList.add("move-down");
+  };
+
+  const cancelSearch = () => {
+    const searchBar = document.querySelector(
+      ".mobile-search-container .search-bar"
+    );
+    const nav = document.querySelector(".nav-container nav");
+    const desktopNav = document.querySelector(".desktop-nav");
+
+    searchBar.classList.remove("active");
+    nav.classList.remove("move-up");
+    desktopNav.classList.remove("move-down");
   };
 
   return (
@@ -149,10 +151,12 @@ function Navbar() {
         <div className="link-search"></div>
         <div className="search-bar" onClick={toggleMobileSearch}>
           <form action="">
-            <input type="text" placeholder="Search apple.com" />
+            <input type="text" placeholder="Search iShop" />
           </form>
         </div>
-        <span className="cancel-btn">Cancel</span>
+        <span className="cancel-btn" onClick={cancelSearch}>
+          Cancel
+        </span>
 
         <div className="quick-links">
           <h2>Quick Links</h2>

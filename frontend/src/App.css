@@ -1,5 +1,5 @@
 body::-webkit-scrollbar {
-  width: 0.4em;
+  width: 0.3em;
 }
 
 body::-webkit-scrollbar-track {
@@ -7,6 +7,11 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: rgb(113, 63, 63);
+  background-color: rgba(255, 67, 93, 1);
   outline: 0px solid rgb(64, 85, 105);
+}
+
+* {
+  margin: 0;
+  scroll-behavior: smooth;
 }
