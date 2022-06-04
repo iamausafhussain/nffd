@@ -2,6 +2,8 @@ import React from "react";
 import "./Navbar.css";
 
 function Navbar() {
+  // Desktop Version
+
   const toggleSearchDesktop = () => {
     const desktopNav = document.querySelector(".desktop-nav");
     const searchContainer = document.querySelector(".search-container");
@@ -22,12 +24,40 @@ function Navbar() {
     overlay.classList.remove("show");
   };
 
+  // Mobile Version
+
+  const toggleMenuIcon = () => {
+    const menuIconContainer = document.querySelector(
+      "nav .menu-icon-container"
+    );
+    const navContainer = document.querySelector(".nav-container");
+    navContainer.classList.toggle("active");
+  };
+
+  const toggleMobileSearch = () => {
+    const searchBar = document.querySelector(
+      ".mobile-search-container .search-bar"
+    );
+    const nav = document.querySelector(".nav-container nav");
+    const searchInput = document.querySelector(
+      ".mobile-search-container input"
+    );
+    const cancelBtn = document.querySelector(
+      ".mobile-search-container .cancel-btn"
+    );
+    const desktopNav = document.querySelector(".desktop-nav");
+
+    searchBar.classList.add("active");
+    nav.classList.add("move-up");
+    desktopNav.classList.add("move-down");
+  };
+
   return (
     <div className="nav-container">
       <nav>
         <ul className="mobile-nav">
           <li>
-            <div className="menu-icon-container">
+            <div className="menu-icon-container" onClick={toggleMenuIcon}>
               <div className="menu-icon">
                 <span className="line-1"></span>
                 <span className="line-2"></span>
@@ -71,7 +101,7 @@ function Navbar() {
           </li>
           <li>
             <a
-              href="#"
+              // href=""
               className="link-search"
               onClick={toggleSearchDesktop}
             ></a>
@@ -88,7 +118,7 @@ function Navbar() {
         <div className="link-search"></div>
         <div className="search-bar">
           <form action="">
-            <input type="text" placeholder="Search apple.com" />
+            <input type="text" placeholder="Search iShop" />
           </form>
         </div>
         <div className="link-close" onClick={toggleCloseDesktop}></div>
@@ -97,10 +127,10 @@ function Navbar() {
           <h2>Quick Links</h2>
           <ul>
             <li>
-              <a href="#">Visiting an Apple Store FAQ</a>
+              <a href="#">Visiting an iShop Store FAQ</a>
             </li>
             <li>
-              <a href="#">Shop Apple Store Online</a>
+              <a href="#">Shop Online</a>
             </li>
             <li>
               <a href="#">Accessories</a>
@@ -117,7 +147,7 @@ function Navbar() {
 
       <div className="mobile-search-container">
         <div className="link-search"></div>
-        <div className="search-bar">
+        <div className="search-bar" onClick={toggleMobileSearch}>
           <form action="">
             <input type="text" placeholder="Search apple.com" />
           </form>
@@ -128,10 +158,10 @@ function Navbar() {
           <h2>Quick Links</h2>
           <ul>
             <li>
-              <a href="#">Visiting an Apple Store FAQ</a>
+              <a href="#">Visiting an iShop Store FAQ</a>
             </li>
             <li>
-              <a href="#">Shop Apple Store Online</a>
+              <a href="#">Shop Online</a>
             </li>
             <li>
               <a href="#">Accessories</a>

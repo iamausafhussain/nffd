@@ -51,10 +51,11 @@ nav .desktop-nav li a:hover {
 }
 
 .link-logo {
-  background: url("../../images/apple-logo.svg");
+  background: url("../../images/iShop.svg");
   display: block;
   background-position: center;
-  height: 44px;
+  object-fit: contain;
+  height: 35px;
   width: 35px;
   background-repeat: no-repeat;
 }
@@ -105,6 +106,10 @@ nav .desktop-nav li a:hover {
   left: 0;
   right: 0;
   z-index: 200;
+}
+
+.link-search {
+  cursor: pointer;
 }
 
 .search-container .link-search {
