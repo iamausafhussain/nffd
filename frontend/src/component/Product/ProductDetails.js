@@ -5,6 +5,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { getProductDetails } from "../../actions/productAction";
 import { useParams } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
+import IconButton from "@mui/material/IconButton";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 
 const ProductDetails = ({ props }) => {
   const { id } = useParams();
@@ -30,7 +33,7 @@ const ProductDetails = ({ props }) => {
   return (
     <>
       <div className="ProductDetails">
-        <div>
+        <div className="carousel__div">
           <Carousel>
             {product.images &&
               product.images.map((item, i) => (
@@ -57,9 +60,13 @@ const ProductDetails = ({ props }) => {
             <h1>{`₹${product.price}`} </h1>
             <div className="detailsBlock-3-1">
               <div className="detailsBlock-3-1-1">
-                <button>-</button>
+                <IconButton aria-label="add" size="small">
+                  <RemoveIcon />
+                </IconButton>
                 <input value="1" type="number" />
-                <button>+</button>
+                <IconButton aria-label="add" size="small">
+                  <AddIcon />
+                </IconButton>
               </div>
               <button>Add to Cart</button>
             </div>
