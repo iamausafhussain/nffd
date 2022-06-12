@@ -33,7 +33,7 @@ const Home = () => {
           <MetaData title="iShopify" />
 
           <div className="banner">
-            <p>Welcome to iShopify app</p>
+            <p>Welcome to iShopify website</p>
             <h1>FIND AMAZING PRODUCTS ON THIS WEBSITE</h1>
 
             <a href="#container">
