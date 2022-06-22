@@ -15,6 +15,8 @@ function App() {
         families: ["Roboto", "Droid Sans", "Chilanka"],
       },
     });
+
+    window.scrollTo(0, 0);
   });
 
   return (

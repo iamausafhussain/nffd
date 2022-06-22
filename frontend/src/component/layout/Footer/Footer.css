@@ -1,9 +1,9 @@
 #footer {
-  /* margin-top: 20vmax; */
-  position: absolute;
+  margin-top: 20vmax;
+  /* position: absolute; */
   padding: 2vmax;
   width: 100%;
-  /* bottom: 0; */
+  /* bottom: 100; */
   background-color: rgba(34, 33, 33);
   color: white;
   display: flex;

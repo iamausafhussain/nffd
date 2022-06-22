@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Carousel from "react-material-ui-carousel";
 import "./ProductDetails.css";
+import ReviewCard from "./ReviewCard.js";
 import { useSelector, useDispatch } from "react-redux";
 import { getProductDetails } from "../../actions/productAction";
 import { useParams } from "react-router-dom";
@@ -83,6 +84,16 @@ const ProductDetails = ({ props }) => {
           <button className="submitReview">Submit Review</button>
         </div>
       </div>
+
+      <h3 className="reviewsHeading">REVIEWS</h3>
+      {product.reviews && product.reviews[0] ? (
+        <div className="reviews">
+          {product.reviews &&
+            product.reviews.map((review) => <ReviewCard review={review} />)}
+        </div>
+      ) : (
+        <p className="noReviews">No Reviews yet!!</p>
+      )}
     </>
   );
 };
