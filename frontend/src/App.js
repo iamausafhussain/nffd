@@ -5,8 +5,9 @@ import Footer from "./component/layout/Footer/Footer.js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import WebFont from "webfontloader";
 import Home from "./component/Home/Home.js";
-import Loader from "./component/layout/Loader/loader";
+// import Loader from "./component/layout/Loader/loader";
 import ProductDetails from "./component/Product/ProductDetails";
+import Products from "./component/Product/Products";
 
 function App() {
   useEffect(() => {
@@ -26,6 +27,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/product/:id" element={<ProductDetails />} />
+        <Route exact path="/products" element={<Products />} />
       </Routes>
 
       <Footer />

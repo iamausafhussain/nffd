@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Navbar.css";
 
 function Navbar() {
   // Desktop Version
 
-  const toggleSearchDesktop = () => {
+  const toggleSearchDesktop = (e) => {
     const desktopNav = document.querySelector(".desktop-nav");
     const searchContainer = document.querySelector(".search-container");
     const overlay = document.querySelector(".overlay");
@@ -78,13 +78,13 @@ function Navbar() {
 
         <ul className="desktop-nav">
           <li>
-            <a href="#" className="link-logo"></a>
+            <a href="/" className="link-logo"></a>
           </li>
           <li>
-            <a href="#">Home</a>
+            <a href="/">Home</a>
           </li>
           <li>
-            <a href="#">Product</a>
+            <a href="/products">Products</a>
           </li>
           <li>
             <a href="#">Contact</a>
