@@ -11,7 +11,7 @@ import {
 } from "../constants/productConstants";
 
 export const getProduct =
-  (currentPage = 1, price = [0, 50000]) =>
+  (currentPage = 1, price = [0, 500000]) =>
   async (dispatch) => {
     try {
       dispatch({

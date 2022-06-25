@@ -28,7 +28,7 @@ function App() {
         <Route exact path="/products" element={<Products />} />
       </Routes>
 
-      {/* <Footer /> */}
+      <Footer />
     </Router>
   );
 }
