@@ -16,8 +16,6 @@ function App() {
         families: ["Roboto", "Droid Sans", "Chilanka"],
       },
     });
-
-    window.scrollTo(0, 0);
   });
 
   return (
@@ -30,7 +28,7 @@ function App() {
         <Route exact path="/products" element={<Products />} />
       </Routes>
 
-      <Footer />
+      {/* <Footer /> */}
     </Router>
   );
 }
