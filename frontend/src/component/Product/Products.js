@@ -8,6 +8,7 @@ import ProductCard from "../Home/ProductCard";
 import Pagination from "react-js-pagination";
 import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
+import Metadata from "../layout/Metadata";
 
 const categories = [
   "Laptop",
@@ -60,7 +61,8 @@ const Products = ({ props }) => {
         <Loader />
       ) : (
         <>
-          <div className="productsHeading">Products</div>
+          <Metadata title="Products -- iShopify" />
+          <h2 className="productsHeading">Products</h2>
           <div className="products">
             {products &&
               products.map((product) => (

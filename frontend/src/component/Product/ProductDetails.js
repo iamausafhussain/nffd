@@ -11,6 +11,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import Loader from "../layout/Loader/Loader";
 import { useAlert } from "react-alert";
+import Metadata from "../layout/Metadata";
 
 const ProductDetails = ({ props }) => {
   const { id } = useParams();
@@ -44,6 +45,7 @@ const ProductDetails = ({ props }) => {
         <Loader />
       ) : (
         <>
+          <Metadata title={`${product.name} -- iShopify`} />
           <div className="ProductDetails">
             <div className="carousel__div">
               <Carousel>
