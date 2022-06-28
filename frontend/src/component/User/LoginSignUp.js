@@ -1,16 +1,17 @@
 import React, { useRef, useState, useEffect } from "react";
 import "./LoginSignUp.css";
 import Loader from "../layout/Loader/Loader";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import FaceIcon from "@material-ui/icons/Face";
 import { useDispatch, useSelector } from "react-redux";
-import { clearErrors, login } from "../../actions/userAction";
+import { clearErrors, login, register } from "../../actions/userAction";
 import { useAlert } from "react-alert";
 
-const LoginSignUp = ({ history }) => {
+const LoginSignUp = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { error, loading, isAuthenticated } = useSelector(
     (state) => state.user
   );
@@ -43,7 +44,7 @@ const LoginSignUp = ({ history }) => {
     myForm.set("email", email);
     myForm.set("password", password);
     myForm.set("avatar", avatar);
-    console.log("SignUp Form Submitted!!");
+    dispatch(register(myForm));
   };
 
   const registerDataChange = (e) => {
@@ -85,9 +86,9 @@ const LoginSignUp = ({ history }) => {
       dispatch(clearErrors());
     }
     if (isAuthenticated) {
-      history.push("/account");
+      navigate("/account", { replace: true });
     }
-  }, [dispatch, error, alert, history, isAuthenticated]);
+  }, [dispatch, error, alert, isAuthenticated]);
 
   return (
     <>
