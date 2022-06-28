@@ -34,9 +34,13 @@ const Home = () => {
             <h1>FIND AMAZING PRODUCTS ON THIS WEBSITE</h1>
 
             <a href="#container">
-              <button>
+              {/* <button>
                 <MouseIcon />
-              </button>
+              </button> */}
+
+              <span className="mouse">
+                <span className="mouse-wheel"></span>
+              </span>
             </a>
           </div>
           <h2 className="homeHeading">Featured Products</h2>

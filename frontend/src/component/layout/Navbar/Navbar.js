@@ -111,6 +111,9 @@ function Navbar() {
           <li>
             <a href="#" className="link-bag"></a>
           </li>
+          <li>
+            <a href="/login" className="link-profile"></a>
+          </li>
         </ul>
       </nav>
 
