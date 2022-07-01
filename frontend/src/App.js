@@ -24,14 +24,14 @@ function App() {
       },
     });
 
-    // store.dispatch(loadUser());
-  });
+    store.dispatch(loadUser());
+  }, []);
 
   return (
     <Router>
       <Header />
 
-      {/* {isAuthenticated && <UserOptions user={user} />} */}
+      {isAuthenticated && <UserOptions user={user} />}
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/product/:id" element={<ProductDetails />} />

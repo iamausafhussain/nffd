@@ -165,4 +165,8 @@
     margin: 0 0.5vmax;
     font: 300 1vmax "Roboto";
   }
+
+  .productCardReactStars {
+    width: 10px;
+  }
 }
