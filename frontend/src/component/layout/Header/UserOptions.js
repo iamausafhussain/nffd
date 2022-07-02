@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
 import { SpeedDial, SpeedDialAction } from "@material-ui/lab";
-// import Backdrop from "@mui/material/Backdrop";
+import Backdrop from "@mui/material/Backdrop";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import PersonIcon from "@material-ui/icons/Person";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
@@ -45,17 +45,14 @@ const UserOptions = ({ user }) => {
 
   function dashboard() {
     navigate("/dashboard", { replace: true });
-    alert.success("Dashboard clicked!!");
   }
 
   function orders() {
     navigate("/orders", { replace: true });
-    alert.success("Orders clicked!!");
   }
 
   function account() {
     navigate("/account", { replace: true });
-    alert.success("Profile clicked!!");
   }
 
   function logoutUser() {
@@ -65,7 +62,7 @@ const UserOptions = ({ user }) => {
 
   return (
     <>
-      {/* <Backdrop open={true} openSpeed={openSpeed} /> */}
+      <Backdrop open={open} style={{ zIndex: "10" }} />
       <SpeedDial
         ariaLabel="SpeedDial tooltip example"
         onOpen={() => setOpen(true)}

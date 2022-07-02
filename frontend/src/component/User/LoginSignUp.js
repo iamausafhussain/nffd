@@ -83,6 +83,7 @@ const LoginSignUp = () => {
 
   useEffect(() => {
     if (error) {
+      alert.error(error);
       dispatch(clearErrors());
     }
     if (isAuthenticated) {
@@ -126,7 +127,7 @@ const LoginSignUp = () => {
                 />
               </div>
               <Link to="/password/forgot">Forgot Password?</Link>
-              <input type="submit" value="Login" className="loginBtn" />
+              <input type="submit" value="LOGIN" className="loginBtn" />
             </form>
 
             <form
@@ -180,7 +181,7 @@ const LoginSignUp = () => {
                   onChange={registerDataChange}
                 />
               </div>
-              <input type="submit" value="Register" className="signUpBtn" />
+              <input type="submit" value="REGISTER" className="signUpBtn" />
             </form>
           </div>
         </div>
