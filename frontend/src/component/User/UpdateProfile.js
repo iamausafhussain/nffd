@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./UpdateProfile.css";
 import Loader from "../layout/Loader/Loader";
-import { useNavigate } from "react-router-dom";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import FaceIcon from "@material-ui/icons/Face";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, updateProfile, loadUser } from "../../actions/userAction";
 import { useAlert } from "react-alert";
@@ -14,6 +14,7 @@ const UpdateProfile = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
   const navigate = useNavigate();
+
   const { user } = useSelector((state) => state.user);
   const { error, isUpdated, loading } = useSelector((state) => state.profile);
 
@@ -34,17 +35,16 @@ const UpdateProfile = () => {
   };
 
   const updateProfileDataChange = (e) => {
-    if (e.target.name === "avatar") {
-      const reader = new FileReader();
+    const reader = new FileReader();
 
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          setAvatarPreview(reader.result);
-          setAvatar(reader.result);
-        }
-      };
-      reader.readAsDataURL(e.target.files[0]);
-    }
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setAvatarPreview(reader.result);
+        setAvatar(reader.result);
+      }
+    };
+
+    reader.readAsDataURL(e.target.files[0]);
   };
 
   useEffect(() => {
@@ -53,15 +53,21 @@ const UpdateProfile = () => {
       setEmail(user.email);
       setAvatarPreview(user.avatar.url);
     }
+
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
     }
+
     if (isUpdated) {
-      alert.success("Profile Updated Successfully!!");
+      alert.success("Profile Updated Successfully");
       dispatch(loadUser());
+
       navigate("/account", { replace: true });
-      dispatch({ type: UPDATE_PROFILE_RESET });
+
+      dispatch({
+        type: UPDATE_PROFILE_RESET,
+      });
     }
   }, [dispatch, error, alert, user, isUpdated]);
 
@@ -75,6 +81,7 @@ const UpdateProfile = () => {
           <div className="updateProfileContainer">
             <div className="updateProfileBox">
               <h2 className="updateProfileHeading">Update Profile</h2>
+
               <form
                 className="updateProfileForm"
                 encType="multipart/form-data"
@@ -91,7 +98,6 @@ const UpdateProfile = () => {
                     onChange={(e) => setName(e.target.value)}
                   />
                 </div>
-
                 <div className="updateProfileEmail">
                   <MailOutlineIcon />
                   <input
@@ -107,6 +113,7 @@ const UpdateProfile = () => {
                 <div id="updateProfileImage">
                   <img src={avatarPreview} alt="Avatar Preview" />
                   <input
+                    // value={avatarPreview}
                     type="file"
                     name="avatar"
                     accept="image/*"
@@ -115,7 +122,7 @@ const UpdateProfile = () => {
                 </div>
                 <input
                   type="submit"
-                  value="UPDATE"
+                  value="Update"
                   className="updateProfileBtn"
                 />
               </form>
