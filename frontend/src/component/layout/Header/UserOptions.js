@@ -5,6 +5,8 @@ import { SpeedDial, SpeedDialAction } from "@material-ui/lab";
 import Backdrop from "@mui/material/Backdrop";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import PersonIcon from "@material-ui/icons/Person";
+import Avatar from "@mui/material/Avatar";
+import Grid from "../../../images/profiles/grid.svg";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import { useAlert } from "react-alert";
@@ -13,8 +15,8 @@ import { useDispatch } from "react-redux";
 
 const UserOptions = ({ user }) => {
   const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
   const alert = useAlert();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const options = [

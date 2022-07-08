@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Navbar.css";
+import { useSelector } from "react-redux";
 
 function Navbar() {
+  const { user } = useSelector((state) => state.user);
+  const { cartItems } = useSelector((state) => state.cart);
+
+  console.log(cartItems.length);
+
   // Desktop Version
 
   const toggleSearchDesktop = (e) => {
@@ -72,7 +78,7 @@ function Navbar() {
           </li>
 
           <li>
-            <a href="" className="link-bag"></a>
+            <a href="/cart" className="link-bag"></a>
           </li>
         </ul>
 
@@ -109,10 +115,17 @@ function Navbar() {
             ></a>
           </li>
           <li>
-            <a href="#" className="link-bag"></a>
+            <a href="/cart" className="link-bag">
+              <span className="cartItemNotification"> {cartItems.length} </span>
+            </a>
           </li>
           <li>
-            <a href="/login" className="link-profile"></a>
+            {!user ? (
+              <a href="/login" className="link-profile"></a>
+            ) : (
+              <a href="#"></a>
+            )}
+            {/* <a href="/login" className="link-profile"></a> */}
           </li>
         </ul>
       </nav>

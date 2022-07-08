@@ -74,7 +74,7 @@
   align-items: center;
 }
 
-.detailsBlock-3-1-1 > button {
+/* .detailsBlock-3-1-1 > button {
   border: none;
   background-color: rgba(0, 0, 0, 0.616);
   padding: 0.5vmax;
@@ -84,7 +84,7 @@
 }
 .detailsBlock-3-1-1 > button:hover {
   background-color: rgba(0, 0, 0, 0.767);
-}
+} */
 
 .detailsBlock-3-1-1 > input {
   border: none;

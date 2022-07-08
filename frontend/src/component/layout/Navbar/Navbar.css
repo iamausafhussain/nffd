@@ -100,6 +100,24 @@ nav .desktop-nav li a:hover {
   background-repeat: no-repeat;
 }
 
+.link-profile-avatar {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+.cartItemNotification {
+  position: relative;
+  top: 7px;
+  right: -13px;
+  width: 15px !important;
+  height: 15px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: tomato;
+  border-radius: 50%;
+}
+
 /* Search Container */
 
 .search-container.hide {
