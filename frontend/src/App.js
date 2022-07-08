@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./component/layout/Header/Header.js";
 import Footer from "./component/layout/Footer/Footer.js";
@@ -20,9 +20,22 @@ import UpdatePassword from "./component/User/UpdatePassword";
 import ForgotPassword from "./component/User/ForgotPassword";
 import ResetPassword from "./component/User/ResetPassword";
 import Cart from "./component/Cart/Cart";
+import Shipping from "./component/Cart/Shipping";
+import ConfirmOrder from "./component/Cart/ConfirmOrder";
+import axios from "axios";
+import Payment from "./component/Cart/Payment";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
+  const [stripeApiKey, setStripeApiKey] = useState("");
+
+  async function getStripeApiKey() {
+    const { data } = await axios.get("/api/v1/stripeapikey");
+
+    setStripeApiKey(data.stripeApiKey);
+  }
 
   useEffect(() => {
     WebFont.load({
@@ -32,6 +45,8 @@ function App() {
     });
 
     store.dispatch(loadUser());
+
+    getStripeApiKey();
   }, []);
 
   return (
@@ -51,9 +66,23 @@ function App() {
           element={<ResetPassword />}
         /> */}
         <Route element={<ProtectedRoutes />}>
-          <Route path="/password/update" exact element={<UpdatePassword />} />
-          <Route path="/me/update" exact element={<UpdateProfile />} />
-          <Route path="/account" exact element={<Profile />} />
+          {stripeApiKey && (
+            <Route
+              exact
+              path="/process/payment"
+              element={
+                <Elements stripe={loadStripe(stripeApiKey)}>
+                  <Payment />
+                </Elements>
+              }
+            />
+          )}
+          {/* <Route exact path="/process/payment" element={<Payment />} /> */}
+          <Route exact path="/order/confirm" element={<ConfirmOrder />} />
+          <Route exact path="login/shipping" element={<Shipping />} />
+          <Route exact path="/password/update" element={<UpdatePassword />} />
+          <Route exact path="/me/update" element={<UpdateProfile />} />
+          <Route exact path="/account" element={<Profile />} />
         </Route>
 
         <Route exact path="/cart" element={<Cart />} />

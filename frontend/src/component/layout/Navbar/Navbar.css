@@ -109,8 +109,8 @@ nav .desktop-nav li a:hover {
   position: relative;
   top: 7px;
   right: -13px;
-  width: 15px !important;
-  height: 15px !important;
+  width: 15px;
+  height: 15px;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -6,8 +6,6 @@ function Navbar() {
   const { user } = useSelector((state) => state.user);
   const { cartItems } = useSelector((state) => state.cart);
 
-  console.log(cartItems.length);
-
   // Desktop Version
 
   const toggleSearchDesktop = (e) => {
@@ -78,7 +76,12 @@ function Navbar() {
           </li>
 
           <li>
-            <a href="/cart" className="link-bag"></a>
+            {!user ? (
+              <a href="/login" className="link-profile"></a>
+            ) : (
+              <a href="#"></a>
+            )}
+            {/* <a href="/cart" className="link-bag"></a> */}
           </li>
         </ul>
 

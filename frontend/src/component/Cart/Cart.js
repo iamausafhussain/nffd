@@ -9,11 +9,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { addItemsToCart, removeItemsFromCart } from "../../actions/cartAction";
 import { useAlert } from "react-alert";
 import { Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import MetaData from "../layout/Metadata";
 
 const Cart = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
+  const navigate = useNavigate();
   const { cartItems } = useSelector((state) => state.cart);
 
   const increaseQuantity = (id, quantity, stock) => {
@@ -39,16 +41,24 @@ const Cart = () => {
     alert.success("Item removed");
   };
 
+  const checkoutHandler = () => {
+    navigate("/login?redirect=shipping", { replace: true });
+  };
+
   return (
     <>
       {cartItems.length === 0 ? (
-        <div className="emptyCart">
-          <RemoveShoppingCartIcon />
-          <Typography>No Product in your Cart</Typography>
-          <Link to="/products">View Products</Link>
-        </div>
+        <>
+          <MetaData title="Cart" />
+          <div className="emptyCart">
+            <RemoveShoppingCartIcon />
+            <Typography>No Product in your Cart</Typography>
+            <Link to="/products">View Products</Link>
+          </div>
+        </>
       ) : (
         <>
+          <MetaData title="Cart" />
           <div className="cartPage">
             <div className="cartHeader">
               <p>Product</p>
@@ -97,11 +107,16 @@ const Cart = () => {
               </div>
               <div className="cartGrossTotalBox">
                 <p>Gross Total:</p>
-                <p> {`₹600`} </p>
+                <p>
+                  {`₹${cartItems.reduce(
+                    (acc, item) => acc + item.price * item.quantity,
+                    0
+                  )}`}
+                </p>
               </div>
               <div></div>
               <div className="checkOutBtn">
-                <button>Check Out</button>
+                <button onClick={checkoutHandler}>Check Out</button>
               </div>
             </div>
           </div>

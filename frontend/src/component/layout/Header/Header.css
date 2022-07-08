@@ -26,3 +26,9 @@
   min-width: 37px !important;
   min-height: 37px !important;
 }
+
+@media screen and (max-width: 600px) {
+  .speedDial {
+    right: 0vmax;
+  }
+}
