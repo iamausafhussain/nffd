@@ -15,6 +15,7 @@ import UserOptions from "./component/layout/Header/UserOptions";
 import { useSelector } from "react-redux";
 import Profile from "./component/User/Profile";
 import ProtectedRoutes from "./component/Routes/ProtectedRoutes";
+import OrderProtectedRoutes from "./component/Routes/OrderProtectedRoutes";
 import UpdateProfile from "./component/User/UpdateProfile";
 import UpdatePassword from "./component/User/UpdatePassword";
 import ForgotPassword from "./component/User/ForgotPassword";
@@ -26,6 +27,9 @@ import axios from "axios";
 import Payment from "./component/Cart/Payment";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import OrderSuccess from "./component/Cart/OrderSuccess";
+import MyOrders from "./component/Order/MyOrders";
+import OrderDetails from "./component/Order/OrderDetails";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -60,11 +64,13 @@ function App() {
         <Route exact path="/products" element={<Products />} />
 
         <Route path="/password/forgot" exact element={<ForgotPassword />} />
+
         {/* <Route
           path="/password/reset/:token"
           exact
           element={<ResetPassword />}
         /> */}
+
         <Route element={<ProtectedRoutes />}>
           {stripeApiKey && (
             <Route
@@ -77,12 +83,29 @@ function App() {
               }
             />
           )}
-          {/* <Route exact path="/process/payment" element={<Payment />} /> */}
-          <Route exact path="/order/confirm" element={<ConfirmOrder />} />
-          <Route exact path="login/shipping" element={<Shipping />} />
           <Route exact path="/password/update" element={<UpdatePassword />} />
           <Route exact path="/me/update" element={<UpdateProfile />} />
           <Route exact path="/account" element={<Profile />} />
+        </Route>
+
+        <Route element={<OrderProtectedRoutes props="/order/:id" />}>
+          <Route exact path="/order/:id" element={<OrderDetails />} />
+        </Route>
+
+        <Route element={<OrderProtectedRoutes props="/orders" />}>
+          <Route exact path="/orders" element={<MyOrders />} />
+        </Route>
+
+        <Route element={<OrderProtectedRoutes props="/success" />}>
+          <Route exact path="/success" element={<OrderSuccess />} />
+        </Route>
+
+        <Route element={<OrderProtectedRoutes props="/login/shipping" />}>
+          <Route exact path="/login/shipping" element={<Shipping />} />
+        </Route>
+
+        <Route element={<OrderProtectedRoutes props="/order/confirm" />}>
+          <Route exact path="/order/confirm" element={<ConfirmOrder />} />
         </Route>
 
         <Route exact path="/cart" element={<Cart />} />
