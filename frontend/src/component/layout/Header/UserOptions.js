@@ -56,7 +56,7 @@ const UserOptions = ({ user }) => {
   }
 
   function dashboard() {
-    navigate("/dashboard", { replace: true });
+    navigate("/admin/dashboard", { replace: true });
   }
 
   function orders() {

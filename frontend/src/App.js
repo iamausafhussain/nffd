@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import Profile from "./component/User/Profile";
 import ProtectedRoutes from "./component/Routes/ProtectedRoutes";
 import OrderProtectedRoutes from "./component/Routes/OrderProtectedRoutes";
+import AdminProtectedRoutes from "./component/Routes/AdminProtectedRoutes";
 import UpdateProfile from "./component/User/UpdateProfile";
 import UpdatePassword from "./component/User/UpdatePassword";
 import ForgotPassword from "./component/User/ForgotPassword";
@@ -30,6 +31,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import OrderSuccess from "./component/Cart/OrderSuccess";
 import MyOrders from "./component/Order/MyOrders";
 import OrderDetails from "./component/Order/OrderDetails";
+import Dashboard from "./component/admin/Dashboard";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -86,6 +88,10 @@ function App() {
           <Route exact path="/password/update" element={<UpdatePassword />} />
           <Route exact path="/me/update" element={<UpdateProfile />} />
           <Route exact path="/account" element={<Profile />} />
+        </Route>
+
+        <Route element={<AdminProtectedRoutes props="/admin/dashboard" />}>
+          <Route exact path="/admin/dashboard" element={<Dashboard />} />
         </Route>
 
         <Route element={<OrderProtectedRoutes props="/order/:id" />}>

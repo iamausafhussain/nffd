@@ -5,6 +5,7 @@ import "./Home.css";
 
 const ProductCard = ({ product }) => {
   const options = {
+    size: "small",
     value: product.ratings,
     readOnly: true,
     precision: 0.5,
