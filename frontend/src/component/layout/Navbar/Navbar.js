@@ -119,7 +119,9 @@ function Navbar() {
           </li>
           <li>
             <a href="/cart" className="link-bag">
-              <span className="cartItemNotification"> {cartItems.length} </span>
+              {cartItems.length == 0 ? null : (
+                <span className="cartItemNotification">{cartItems.length}</span>
+              )}
             </a>
           </li>
           <li>

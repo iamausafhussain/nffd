@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import "./OrderDetails.css";
 import { useSelector, useDispatch } from "react-redux";
 import MetaData from "../layout/Metadata";
 import { Link, useParams } from "react-router-dom";
@@ -38,23 +39,79 @@ const OrderDetails = () => {
               <div className="orderDetailsContainerBox">
                 <div>
                   <p>Name:</p>
-                  {/* <span> {order.user && order.user.name} </span> */}
+                  <span> {order.user && order.user.name} </span>
                 </div>
 
                 <div>
                   <p>Phone:</p>
-                  {/* <span>
-                    {order.shippingInfo && order.shippingInfo[0].phoneNo}
-                  </span> */}
+                  <span>
+                    {order.shippingInfo && order.shippingInfo.phoneNo}
+                  </span>
                 </div>
 
                 <div>
                   <p>Address:</p>
-                  {/* <span>
+                  <span>
                     {order.shippingInfo &&
-                      `${order.shippingInfo[0].address}, ${order.shippingInfo[0].city}, ${order.shippingInfo[0].state}, ${order.shippingInfo[0].pinCode}, ${order.shippingInfo[0].country}`}
-                  </span> */}
+                      `${order.shippingInfo.address}, ${order.shippingInfo.city}, ${order.shippingInfo.state}, ${order.shippingInfo.pinCode}, ${order.shippingInfo.country}`}
+                  </span>
                 </div>
+              </div>
+
+              <Typography>Payment</Typography>
+              <div className="orderDetailsContainerBox">
+                <div>
+                  <p
+                    className={
+                      order.paymentInfo &&
+                      order.paymentInfo.status === "succeeded"
+                        ? "greenColor"
+                        : "redColor"
+                    }
+                  >
+                    {order.paymentInfo &&
+                    order.paymentInfo.status === "succeeded"
+                      ? "PAID"
+                      : "NOT PAID"}
+                  </p>
+                </div>
+                <div>
+                  <p>Amount:</p>
+                  <span> {order.totalPrice && order.totalPrice} </span>
+                </div>
+              </div>
+
+              <Typography>Order Status</Typography>
+              <div className="orderDetailsContainerBox">
+                <div>
+                  <p
+                    className={
+                      order.orderStatus &&
+                      order.orderStatus.status === "Delivered"
+                        ? "greenColor"
+                        : "redColor"
+                    }
+                  >
+                    {order.orderStatus && order.orderStatus}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="orderDetailsCartItems">
+              <Typography>Order Items:</Typography>
+              <div className="orderDetailsCartItemsContainer">
+                {order.orderItems &&
+                  order.orderItems.map((item) => (
+                    <div key={item.product}>
+                      <img src={item.image} alt="Product" />
+                      <Link to={`/product/${item.product}`}> {item.name} </Link>
+                      <span>
+                        {item.quantity} X {item.price} ={" "}
+                        <b>₹ {item.price * item.quantity} </b>
+                      </span>
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
