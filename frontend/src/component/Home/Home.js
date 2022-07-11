@@ -31,7 +31,7 @@ const Home = () => {
 
           <div className="banner">
             <p>Welcome to iShopify website</p>
-            <h1>FIND AMAZING PRODUCTS ON THIS WEBSITE</h1>
+            <h1>FIND AMAZING PRODUCTS IN THIS WEBSITE</h1>
 
             <a href="#container">
               {/* <button>
