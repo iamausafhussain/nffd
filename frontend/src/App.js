@@ -20,7 +20,6 @@ import AdminProtectedRoutes from "./component/Routes/AdminProtectedRoutes";
 import UpdateProfile from "./component/User/UpdateProfile";
 import UpdatePassword from "./component/User/UpdatePassword";
 import ForgotPassword from "./component/User/ForgotPassword";
-import ResetPassword from "./component/User/ResetPassword";
 import Cart from "./component/Cart/Cart";
 import Shipping from "./component/Cart/Shipping";
 import ConfirmOrder from "./component/Cart/ConfirmOrder";
@@ -32,6 +31,8 @@ import OrderSuccess from "./component/Cart/OrderSuccess";
 import MyOrders from "./component/Order/MyOrders";
 import OrderDetails from "./component/Order/OrderDetails";
 import Dashboard from "./component/admin/Dashboard";
+import ProductList from "./component/admin/ProductList";
+import NewProduct from "./component/admin/NewProduct";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -67,12 +68,7 @@ function App() {
 
         <Route path="/password/forgot" exact element={<ForgotPassword />} />
 
-        {/* <Route
-          path="/password/reset/:token"
-          exact
-          element={<ResetPassword />}
-        /> */}
-
+        {/* Basic Protected Routes */}
         <Route element={<ProtectedRoutes />}>
           {stripeApiKey && (
             <Route
@@ -89,30 +85,34 @@ function App() {
           <Route exact path="/me/update" element={<UpdateProfile />} />
           <Route exact path="/account" element={<Profile />} />
         </Route>
+        {/* Basic Protected Routes Ends */}
 
-        <Route element={<AdminProtectedRoutes props="/admin/dashboard" />}>
+        {/* Admin Routes Starts */}
+        <Route element={<AdminProtectedRoutes />}>
           <Route exact path="/admin/dashboard" element={<Dashboard />} />
+          <Route exact path="/admin/products" element={<ProductList />} />
+          <Route exact path="/admin/product" element={<NewProduct />} />
         </Route>
 
-        <Route element={<OrderProtectedRoutes props="/order/:id" />}>
+        {/* Admin Routes Ends */}
+
+        {/* Orders Protected Routes Starts */}
+        <Route element={<OrderProtectedRoutes />}>
           <Route exact path="/order/:id" element={<OrderDetails />} />
         </Route>
-
-        <Route element={<OrderProtectedRoutes props="/orders" />}>
+        <Route element={<OrderProtectedRoutes />}>
           <Route exact path="/orders" element={<MyOrders />} />
         </Route>
-
-        <Route element={<OrderProtectedRoutes props="/success" />}>
+        <Route element={<OrderProtectedRoutes />}>
           <Route exact path="/success" element={<OrderSuccess />} />
         </Route>
-
-        <Route element={<OrderProtectedRoutes props="/login/shipping" />}>
+        <Route element={<OrderProtectedRoutes />}>
           <Route exact path="/login/shipping" element={<Shipping />} />
         </Route>
-
-        <Route element={<OrderProtectedRoutes props="/order/confirm" />}>
+        <Route element={<OrderProtectedRoutes />}>
           <Route exact path="/order/confirm" element={<ConfirmOrder />} />
         </Route>
+        {/* Orders Protected Routes Ends */}
 
         <Route exact path="/cart" element={<Cart />} />
 
