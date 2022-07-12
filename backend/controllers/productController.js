@@ -26,6 +26,7 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
       url: result.secure_url,
     });
   }
+
   req.body.images = imageLinks;
   req.body.user = req.user.id;
 
@@ -96,6 +97,36 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
     });
   }
 
+  //Images start here!!
+  let images = [];
+
+  if (typeof req.body.images === "string") {
+    images.push(req.body.images);
+  } else {
+    images = req.body.images;
+  }
+
+  if (images !== undefined) {
+    // Deleting images from cloudinary
+    for (const element of product.images) {
+      await cloudinary.v2.uploader.destroy(element.public_id);
+    }
+
+    const imageLinks = [];
+
+    for (const element of images) {
+      const result = await cloudinary.v2.uploader.upload(element, {
+        folder: "products",
+      });
+
+      imageLinks.push({
+        public_id: result.public_id,
+        url: result.secure_url,
+      });
+    }
+    req.body.images = imageLinks;
+  }
+
   product = await Product.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
@@ -118,6 +149,11 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
       success: false,
       message: "Product not found!!",
     });
+  }
+
+  // Deleting images from cloudinary
+  for (const element of product.images) {
+    await cloudinary.v2.uploader.destroy(element.public_id);
   }
 
   await product.remove();

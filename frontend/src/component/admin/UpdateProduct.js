@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
-import "./NewProduct.css";
+import "./UpdateProduct.css";
 import { useSelector, useDispatch } from "react-redux";
-import { clearErrors, createProduct } from "../../actions/productAction";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  clearErrors,
+  updateProduct,
+  getProductDetails,
+} from "../../actions/productAction";
 import { useAlert } from "react-alert";
-import { useNavigate } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import MetaData from "../layout/Metadata";
 import AccountTreeIcon from "@material-ui/icons/AccountTree";
@@ -12,13 +16,21 @@ import StorageIcon from "@material-ui/icons/Storage";
 import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import Sidebar from "./Sidebar";
-import { NEW_PRODUCT_RESET } from "../../constants/productConstants";
+import { UPDATE_PRODUCT_RESET } from "../../constants/productConstants";
 
-const NewProduct = () => {
-  const navigate = useNavigate();
+const UpdateProduct = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
-  const { loading, error, success } = useSelector((state) => state.newProduct);
+  const navigate = useNavigate();
+  const { id } = useParams();
+
+  const { error, product } = useSelector((state) => state.productDetails);
+
+  const {
+    loading,
+    error: updateError,
+    isUpdated,
+  } = useSelector((state) => state.product);
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
@@ -26,42 +38,20 @@ const NewProduct = () => {
   const [category, setCategory] = useState("");
   const [Stock, setStock] = useState(0);
   const [images, setImages] = useState([]);
-  const [imagePreview, setImagesPreview] = useState([]);
+  const [oldImages, setOldImages] = useState([]);
+  const [imagesPreview, setImagesPreview] = useState([]);
 
   const categories = [
     "Laptop",
-    "Mens Attire",
-    "Womens Attire",
-    "Kids Attire",
-    "Tablet",
-    "Watch",
+    "Footwear",
+    "Bottom",
+    "Tops",
+    "Attire",
     "Camera",
     "SmartPhones",
   ];
 
-  const createProductImagesChange = (e) => {
-    const files = Array.from(e.target.files);
-
-    // setImages([]);
-    // setImagesPreview([]);
-
-    files.forEach((file) => {
-      const reader = new FileReader();
-
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          setImagesPreview((old) => [...old, reader.result]);
-          setImages((old) => [...old, reader.result]);
-        }
-      };
-
-      reader.readAsDataURL(file);
-    });
-
-    console.log(files);
-  };
-
-  const createProductSubmitHandler = (e) => {
+  const updateProductSubmitHandler = (e) => {
     e.preventDefault();
 
     const myForm = new FormData();
@@ -75,62 +65,98 @@ const NewProduct = () => {
     images.forEach((image) => {
       myForm.append("images", image);
     });
+    dispatch(updateProduct(id, myForm));
+  };
 
-    dispatch(createProduct(myForm));
+  const updateProductImagesChange = (e) => {
+    const files = Array.from(e.target.files);
+
+    // setImages([]);
+    // setImagesPreview([]);
+    // setOldImages([]);
+
+    files.forEach((file) => {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setImagesPreview((old) => [...old, reader.result]);
+          setImages((old) => [...old, reader.result]);
+        }
+      };
+
+      reader.readAsDataURL(file);
+    });
   };
 
   useEffect(() => {
+    if (product && product._id !== id) {
+      dispatch(getProductDetails(id));
+    } else {
+      setName(product.name);
+      setDescription(product.description);
+      setPrice(product.price);
+      setCategory(product.category);
+      setStock(product.Stock);
+      setOldImages(product.images);
+    }
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
     }
-    if (success) {
-      alert.success("Product Created Successfully!!");
-      navigate("/admin/dashboard", { replace: true });
-      dispatch({ type: NEW_PRODUCT_RESET });
+
+    if (updateError) {
+      alert.error(updateError);
+      dispatch(clearErrors());
     }
-  }, [dispatch, alert, error, navigate, success]);
+
+    if (isUpdated) {
+      alert.success("Product Updated Successfully");
+      navigate("/admin/products", { replace: true });
+      dispatch({ type: UPDATE_PRODUCT_RESET });
+    }
+  }, [dispatch, error, updateError, isUpdated, alert, id, product, navigate]);
 
   return (
     <>
-      <MetaData title="Create Product" />
+      <MetaData title="Update Product" />
       <div className="dashboard">
         <Sidebar />
-        <div className="newProductContainer">
+        <div className="updateProductContainer">
           <form
             className="createProductForm"
             encType="multipart/form-data"
-            onSubmit={createProductSubmitHandler}
+            onSubmit={updateProductSubmitHandler}
           >
-            <h1>Create Product</h1>
+            <h1>Update Product</h1>
 
             <div>
               <SpellcheckIcon />
               <input
                 type="text"
-                placeholder="Product name"
+                placeholder="Product Name"
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
-
             <div>
               <AttachMoneyIcon />
               <input
-                type="price"
-                placeholder="price"
+                type="number"
+                placeholder="Price"
                 required
                 onChange={(e) => setPrice(e.target.value)}
+                value={price}
               />
             </div>
 
             <div>
               <DescriptionIcon />
+
               <textarea
-                placeholder="product description"
+                placeholder="Product Description"
                 value={description}
-                required
                 onChange={(e) => setDescription(e.target.value)}
                 cols="30"
                 rows="1"
@@ -139,7 +165,10 @@ const NewProduct = () => {
 
             <div>
               <AccountTreeIcon />
-              <select onChange={(e) => setCategory(e.target.value)}>
+              <select
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+              >
                 <option value="">Choose Category</option>
                 {categories.map((cate) => (
                   <option key={cate} value={cate}>
@@ -156,6 +185,7 @@ const NewProduct = () => {
                 placeholder="Stock"
                 required
                 onChange={(e) => setStock(e.target.value)}
+                value={Stock}
               />
             </div>
 
@@ -164,14 +194,21 @@ const NewProduct = () => {
                 type="file"
                 name="avatar"
                 accept="image/*"
+                onChange={updateProductImagesChange}
                 multiple
-                onChange={createProductImagesChange}
               />
             </div>
 
             <div id="createProductFormImage">
-              {imagePreview.map((image, index) => (
-                <img key={index} src={image} alt="Avatar Preview" />
+              {oldImages &&
+                oldImages.map((image, index) => (
+                  <img key={index} src={image.url} alt="Old Product Preview" />
+                ))}
+            </div>
+
+            <div id="createProductFormImage">
+              {imagesPreview.map((image, index) => (
+                <img key={index} src={image} alt="Product Preview" />
               ))}
             </div>
 
@@ -189,4 +226,4 @@ const NewProduct = () => {
   );
 };
 
-export default NewProduct;
+export default UpdateProduct;

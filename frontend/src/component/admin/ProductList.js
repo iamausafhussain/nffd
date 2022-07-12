@@ -2,60 +2,84 @@ import React, { useEffect } from "react";
 import "./ProductList.css";
 import { DataGrid } from "@material-ui/data-grid";
 import { useSelector, useDispatch } from "react-redux";
-import { clearErrors, getAdminProducts } from "../../actions/productAction";
-import { Link, useParams } from "react-router-dom";
+import {
+  clearErrors,
+  getAdminProducts,
+  deleteProduct,
+} from "../../actions/productAction";
+import { Link } from "react-router-dom";
 import { useAlert } from "react-alert";
 import { Button } from "@material-ui/core";
 import MetaData from "../layout/Metadata";
 import Sidebar from "./Sidebar";
 import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
+import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
+import { DELETE_PRODUCT_RESET } from "../../constants/productConstants";
 
 const ProductList = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
-  const { id } = useParams();
   const { error, products } = useSelector((state) => state.products);
+  const { error: deleteError, isDeleted } = useSelector(
+    (state) => state.product
+  );
+
+  const deleteProductHandler = (id) => {
+    dispatch(deleteProduct(id));
+  };
 
   useEffect(() => {
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
     }
+
+    if (deleteError) {
+      alert.error(deleteError);
+      dispatch(clearErrors());
+    }
+
+    if (isDeleted) {
+      alert.success("Product Deleted Successfully!!");
+      dispatch({ type: DELETE_PRODUCT_RESET });
+    }
+
     dispatch(getAdminProducts());
-  }, [dispatch, alert, error]);
+  }, [dispatch, alert, error, isDeleted, deleteError]);
 
   const columns = [
-    { field: "id", headerName: "Product ID", minWidth: 200, flex: 0.5 },
-    { field: "name", headerName: "name", minWidth: 350, flex: 1 },
+    { field: "id", headerName: "Product ID", minWidth: 200, flex: 0.2 },
+    { field: "name", headerName: "name", minWidth: 150, flex: 0.2 },
     {
       field: "stock",
       headerName: "stock",
       type: "number",
-      minWidth: 150,
-      flex: 0.3,
+      minWidth: 100,
+      flex: 0.2,
     },
     {
       field: "price",
       headerName: "price",
       type: "number",
-      minWidth: 150,
-      flex: 0.3,
+      flex: 0.2,
     },
     {
       field: "action",
       headerName: "action",
       type: "number",
       sortable: false,
-      minWidth: 150,
-      flex: 0.3,
+      flex: 0.2,
       renderCell: (params) => {
         return (
           <>
             <Link to={`/admin/product/${params.getValue(params.id, "id")}`}>
-              <EditIcon />
+              <SettingsSuggestIcon />
             </Link>
-            <Button>
+            <Button
+              onClick={() =>
+                deleteProductHandler(params.getValue(params.id, "id"))
+              }
+            >
               <DeleteIcon />
             </Button>
           </>

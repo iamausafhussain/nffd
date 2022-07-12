@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import "./Dashboard.css";
 import { getAdminProducts } from "../../actions/productAction";
@@ -15,6 +15,8 @@ import MetaData from "../layout/Metadata";
 const Dashboard = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products);
+  const { orders } = useSelector((state) => state.allOrders);
+  // const { users } = useSelector((state) => state.allUsers);
 
   let outOfStock = 0;
   products &&
@@ -24,6 +26,12 @@ const Dashboard = () => {
       }
     });
 
+  let totalAmount = 0;
+  orders &&
+    orders.forEach((item) => {
+      totalAmount += item.totalPrice;
+    });
+
   const lineState = {
     labels: ["Initial Amount", "Amount Earned"],
     datasets: [
@@ -31,7 +39,7 @@ const Dashboard = () => {
         label: "TOTAL AMOUNT",
         backgroundColor: ["tomato"],
         hoverBackgroundColor: ["rgb(197, 72, 49)"],
-        data: [0, 4000],
+        data: [0, totalAmount],
       },
     ],
   };
@@ -61,7 +69,7 @@ const Dashboard = () => {
           <div>
             <p>
               Total Amount
-              <br /> ₹2000
+              <br /> ₹{totalAmount}
             </p>
           </div>
 
@@ -73,7 +81,7 @@ const Dashboard = () => {
 
             <Link to="/admin/orders">
               <p>Orders</p>
-              <p>4</p>
+              <p>{orders && orders.length}</p>
             </Link>
 
             <Link to="/admin/users">

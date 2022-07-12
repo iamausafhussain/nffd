@@ -12,12 +12,13 @@ import Metadata from "../layout/Metadata";
 
 const categories = [
   "Laptop",
-  "Footwear",
-  "Bottom",
-  "Tops",
-  "Attire",
+  "Mens Attire",
+  "Womens Attire",
+  "Kids Attire",
+  "Tablet",
+  "Watch",
   "Camera",
-  "Mobile",
+  "SmartPhones",
 ];
 
 const Products = ({ props }) => {

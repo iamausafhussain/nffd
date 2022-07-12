@@ -43,6 +43,10 @@
   color: rgb(236, 30, 30);
 }
 
+.MuiDataGrid-cell--textRight {
+  /* line-height: 10px !important; */
+}
+
 .MuiDataGrid-columnHeader div {
   color: rgb(255, 255, 255);
 }
