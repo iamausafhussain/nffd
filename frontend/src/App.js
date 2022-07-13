@@ -14,6 +14,7 @@ import { loadUser } from "./actions/userAction";
 import UserOptions from "./component/layout/Header/UserOptions";
 import { useSelector } from "react-redux";
 import Profile from "./component/User/Profile";
+import About from "./component/layout/About/About";
 import ProtectedRoutes from "./component/Routes/ProtectedRoutes";
 import OrderProtectedRoutes from "./component/Routes/OrderProtectedRoutes";
 import AdminProtectedRoutes from "./component/Routes/AdminProtectedRoutes";
@@ -36,6 +37,10 @@ import NewProduct from "./component/admin/NewProduct";
 import UpdateProduct from "./component/admin/UpdateProduct";
 import OrdersList from "./component/admin/OrdersList";
 import UpdateOrder from "./component/admin/UpdateOrder";
+import UsersList from "./component/admin/UsersList";
+import UpdateUser from "./component/admin/UpdateUser";
+import ReviewsList from "./component/admin/ReviewsList";
+import NotFound from "./component/layout/NotFound/NotFound";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -59,12 +64,15 @@ function App() {
     getStripeApiKey();
   }, []);
 
+  window.addEventListener("contextmenu", (e) => e.preventDefault());
+
   return (
     <Router>
       <Header />
 
       {isAuthenticated && <UserOptions user={user} />}
       <Routes>
+        <Route path="*" element={<NotFound />} />
         <Route exact path="/" element={<Home />} />
         <Route exact path="/product/:id" element={<ProductDetails />} />
         <Route exact path="/products" element={<Products />} />
@@ -84,6 +92,7 @@ function App() {
               }
             />
           )}
+
           <Route exact path="/password/update" element={<UpdatePassword />} />
           <Route exact path="/me/update" element={<UpdateProfile />} />
           <Route exact path="/account" element={<Profile />} />
@@ -98,6 +107,9 @@ function App() {
           <Route exact path="/admin/product/:id" element={<UpdateProduct />} />
           <Route exact path="/admin/orders" element={<OrdersList />} />
           <Route exact path="/admin/order/:id" element={<UpdateOrder />} />
+          <Route exact path="/admin/users" element={<UsersList />} />
+          <Route exact path="/admin/user/:id" element={<UpdateUser />} />
+          <Route exact path="/admin/reviews" element={<ReviewsList />} />
         </Route>
 
         {/* Admin Routes Ends */}
@@ -121,6 +133,7 @@ function App() {
         {/* Orders Protected Routes Ends */}
 
         <Route exact path="/cart" element={<Cart />} />
+        <Route exact path="/about" element={<About />} />
 
         <Route exact path="/login" element={<LoginSignUp />} />
       </Routes>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./UpdateOrder.css";
 import MetaData from "../layout/Metadata";
 import { Link, useParams } from "react-router-dom";
-import { Typography } from "@material-ui/core";
+import { Typography, Button } from "@material-ui/core";
 import Sidebar from "./Sidebar";
 import {
   getOrderDetails,
@@ -13,7 +13,6 @@ import { useSelector, useDispatch } from "react-redux";
 import Loader from "../layout/Loader/Loader";
 import { useAlert } from "react-alert";
 import AccountTreeIcon from "@material-ui/icons/AccountTree";
-import { Button } from "@material-ui/core";
 import { UPDATE_ORDER_RESET } from "../../constants/orderConstants";
 
 const UpdateOrder = () => {
@@ -55,7 +54,7 @@ const UpdateOrder = () => {
       <MetaData title="Update Order" />
       <div className="dashboard">
         <Sidebar />
-        <div className="updateOrderContainer">
+        <div className="updateProductContainer">
           {loading ? (
             <Loader />
           ) : (

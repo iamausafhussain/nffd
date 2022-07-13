@@ -96,19 +96,21 @@ function Navbar() {
             <a href="/products">Products</a>
           </li>
           <li>
-            <a href="#">Contact</a>
+            <a href="https://iamausafhussain.netlify.app" target="_blank">
+              Contact
+            </a>
           </li>
           <li>
-            <a href="#">About</a>
+            <a href="/about">About</a>
           </li>
           <li>
-            <a href="#">Support</a>
+            <a>Support</a>
           </li>
           <li>
-            <a href="#">Only on iShop</a>
+            <a>Only on iShop</a>
           </li>
           <li>
-            <a href="#">Career</a>
+            <a>Career</a>
           </li>
           <li>
             <a
@@ -125,11 +127,7 @@ function Navbar() {
             </a>
           </li>
           <li>
-            {!user ? (
-              <a href="/login" className="link-profile"></a>
-            ) : (
-              <a href="#"></a>
-            )}
+            {!user ? <a href="/login" className="link-profile"></a> : <a></a>}
             {/* <a href="/login" className="link-profile"></a> */}
           </li>
         </ul>
@@ -150,19 +148,19 @@ function Navbar() {
           <h2>Quick Links</h2>
           <ul>
             <li>
-              <a href="#">Visiting an iShop Store FAQ</a>
+              <a>Visiting an iShop Store FAQ</a>
             </li>
             <li>
-              <a href="#">Shop Online</a>
+              <a>Shop Online</a>
             </li>
             <li>
-              <a href="#">Accessories</a>
+              <a>Accessories</a>
             </li>
             <li>
-              <a href="#">AirPods</a>
+              <a>AirPods</a>
             </li>
             <li>
-              <a href="#">AirTag</a>
+              <a>AirTag</a>
             </li>
           </ul>
         </div>
@@ -183,19 +181,19 @@ function Navbar() {
           <h2>Quick Links</h2>
           <ul>
             <li>
-              <a href="#">Visiting an iShop Store FAQ</a>
+              <a>Visiting an iShop Store FAQ</a>
             </li>
             <li>
-              <a href="#">Shop Online</a>
+              <a>Shop Online</a>
             </li>
             <li>
-              <a href="#">Accessories</a>
+              <a>Accessories</a>
             </li>
             <li>
-              <a href="#">AirPods</a>
+              <a>AirPods</a>
             </li>
             <li>
-              <a href="#">AirTag</a>
+              <a>AirTag</a>
             </li>
           </ul>
         </div>
