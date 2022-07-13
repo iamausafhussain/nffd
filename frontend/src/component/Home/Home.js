@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import "./Home.css";
+import Loader from "../layout/Loader/Loader";
 import ProductCard from "./ProductCard.js";
 import MetaData from "../layout/Metadata";
 import { clearErrors, getProduct } from "../../actions/productAction";
@@ -21,25 +22,28 @@ const Home = () => {
 
   return (
     <>
-      <MetaData title="iShopify" />
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <MetaData title="iShopify" />
 
-      <div className="banner">
-        {/* <p>Welcome to iShopify website</p>
-            <h1>FIND AMAZING PRODUCTS IN THIS WEBSITE</h1> */}
+          <div className="banner">
+            <a href="#container">
+              <span className="mouse">
+                <span className="mouse-wheel"></span>
+              </span>
+            </a>
+          </div>
 
-        <a href="#container">
-          <span className="mouse">
-            <span className="mouse-wheel"></span>
-          </span>
-        </a>
-      </div>
+          <h2 className="homeHeading">Featured Products</h2>
 
-      <h2 className="homeHeading">Featured Products</h2>
-
-      <div className="container" id="container">
-        {products &&
-          products.map((product) => <ProductCard product={product} />)}
-      </div>
+          <div className="container" id="container">
+            {products &&
+              products.map((product) => <ProductCard product={product} />)}
+          </div>
+        </>
+      )}
     </>
   );
 };
