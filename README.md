@@ -53,6 +53,6 @@ MOBILE_ADMIN_DASHBOARD:🏠
 ![mob_adminDashboard](https://user-images.githubusercontent.com/68208476/179245593-287c6615-c995-4f89-a34d-1d2af92dd493.png)
 
 
-for my personal porfolio head on to:🚀
+FOR MY PORTFOLIO HEAD ON TO:🚀
 
 https://iamausafhussain.netlify.app
