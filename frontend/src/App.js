@@ -47,9 +47,11 @@ function App() {
   const [stripeApiKey, setStripeApiKey] = useState("");
 
   async function getStripeApiKey() {
-    const { data } = await axios.get("/api/v1/stripeapikey");
+    // const { data } = await axios.get("/api/v1/stripeapikey");
 
-    setStripeApiKey(data.stripeApiKey);
+    setStripeApiKey(
+      "pk_test_51LJLbeSF4BaggX0f0O9sS4qT3X6mE4Tf8AxoOqw921g9x8I4kiouLIVeXeF57PZbxtUz2XzF3WkwLHmeZg45VULh00cB6eh474"
+    );
   }
 
   useEffect(() => {
@@ -60,39 +62,37 @@ function App() {
     });
 
     store.dispatch(loadUser());
+    console.log(stripeApiKey);
 
     getStripeApiKey();
   }, []);
 
-  window.addEventListener("contextmenu", (e) => e.preventDefault());
+  // window.addEventListener("contextmenu", (e) => e.preventDefault());
 
   return (
     <Router>
       <Header />
 
       {isAuthenticated && <UserOptions user={user} />}
+
       <Routes>
-        <Route path="*" element={<NotFound />} />
         <Route exact path="/" element={<Home />} />
         <Route exact path="/product/:id" element={<ProductDetails />} />
         <Route exact path="/products" element={<Products />} />
+        <Route
+          exact
+          path="/process/payment"
+          element={
+            <Elements stripe={loadStripe(stripeApiKey)}>
+              <Payment />
+            </Elements>
+          }
+        />
 
         <Route path="/password/forgot" exact element={<ForgotPassword />} />
 
         {/* Basic Protected Routes */}
         <Route element={<ProtectedRoutes />}>
-          {stripeApiKey && (
-            <Route
-              exact
-              path="/process/payment"
-              element={
-                <Elements stripe={loadStripe(stripeApiKey)}>
-                  <Payment />
-                </Elements>
-              }
-            />
-          )}
-
           <Route exact path="/password/update" element={<UpdatePassword />} />
           <Route exact path="/me/update" element={<UpdateProfile />} />
           <Route exact path="/account" element={<Profile />} />
