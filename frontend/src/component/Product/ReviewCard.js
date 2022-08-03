@@ -1,12 +1,8 @@
 import React from "react";
 import { Rating } from "@material-ui/lab";
 import profilePng from "../../images/profilePic.jpg";
-import { useSelector } from "react-redux";
 
 const ReviewCard = ({ review }) => {
-  const { user } = useSelector((state) => state.user);
-  const { product } = useSelector((state) => state.productDetails);
-
   const options = {
     value: review.rating,
     readOnly: true,

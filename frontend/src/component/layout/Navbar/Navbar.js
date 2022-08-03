@@ -126,10 +126,10 @@ function Navbar() {
               )}
             </a>
           </li>
-          <li>
+          {/* <li>
             {!user ? <a href="/login" className="link-profile"></a> : <a></a>}
-            {/* <a href="/login" className="link-profile"></a> */}
-          </li>
+            <a href="/login" className="link-profile"></a>
+          </li> */}
         </ul>
       </nav>
 
