@@ -43,104 +43,107 @@ import ReviewsList from "./component/admin/ReviewsList";
 import NotFound from "./component/layout/NotFound/NotFound";
 
 function App() {
-  const { isAuthenticated, user } = useSelector((state) => state.user);
-  const [stripeApiKey, setStripeApiKey] = useState("");
+	const { isAuthenticated, user } = useSelector((state) => state.user);
+	const [stripeApiKey, setStripeApiKey] = useState(
+		"pk_test_51LJLbeSF4BaggX0f0O9sS4qT3X6mE4Tf8AxoOqw921g9x8I4kiouLIVeXeF57PZbxtUz2XzF3WkwLHmeZg45VULh00cB6eh474"
+	);
 
-  async function getStripeApiKey() {
-    // const { data } = await axios.get("/api/v1/stripeapikey");
+	async function getStripeApiKey() {
+		// const { data } = await axios.get("/api/v1/stripeapikey");
+		// console.log(data);
 
-    setStripeApiKey(
-      "pk_test_51LJLbeSF4BaggX0f0O9sS4qT3X6mE4Tf8AxoOqw921g9x8I4kiouLIVeXeF57PZbxtUz2XzF3WkwLHmeZg45VULh00cB6eh474"
-    );
-  }
+		setStripeApiKey(
+			"pk_test_51LJLbeSF4BaggX0f0O9sS4qT3X6mE4Tf8AxoOqw921g9x8I4kiouLIVeXeF57PZbxtUz2XzF3WkwLHmeZg45VULh00cB6eh474"
+		);
+	}
 
-  useEffect(() => {
-    WebFont.load({
-      google: {
-        families: ["Roboto", "Droid Sans", "Chilanka"],
-      },
-    });
+	useEffect(() => {
+		WebFont.load({
+			google: {
+				families: ["Roboto", "Droid Sans", "Chilanka"],
+			},
+		});
 
-    store.dispatch(loadUser());
-    console.log(stripeApiKey);
+		store.dispatch(loadUser());
+		// console.log(stripeApiKey);
 
-    getStripeApiKey();
-  }, []);
+		getStripeApiKey();
+	}, []);
 
-  // window.addEventListener("contextmenu", (e) => e.preventDefault());
+	// window.addEventListener("contextmenu", (e) => e.preventDefault());
 
-  return (
-    <Router>
-      <Header />
+	return (
+		<Router>
+			<Header />
 
-      {isAuthenticated && <UserOptions user={user} />}
+			{isAuthenticated && <UserOptions user={user} />}
 
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/product/:id" element={<ProductDetails />} />
-        <Route exact path="/products" element={<Products />} />
-        <Route
-          exact
-          path="/process/payment"
-          element={
-            <Elements stripe={loadStripe(stripeApiKey)}>
-              <Payment />
-            </Elements>
-          }
-        />
+			<Routes>
+				<Route exact path="/" element={<Home />} />
+				<Route exact path="/product/:id" element={<ProductDetails />} />
+				<Route exact path="/products" element={<Products />} />
+				<Route
+					exact
+					path="/process/payment"
+					element={
+						<Elements stripe={loadStripe(stripeApiKey)}>
+							<Payment />
+						</Elements>
+					}
+				/>
 
-        <Route path="/password/forgot" exact element={<ForgotPassword />} />
+				<Route path="/password/forgot" exact element={<ForgotPassword />} />
 
-        {/* Basic Protected Routes */}
-        <Route element={<ProtectedRoutes />}>
-          <Route exact path="/password/update" element={<UpdatePassword />} />
-          <Route exact path="/me/update" element={<UpdateProfile />} />
-          <Route exact path="/account" element={<Profile />} />
-        </Route>
-        {/* Basic Protected Routes Ends */}
+				{/* Basic Protected Routes */}
+				<Route element={<ProtectedRoutes />}>
+					<Route exact path="/password/update" element={<UpdatePassword />} />
+					<Route exact path="/me/update" element={<UpdateProfile />} />
+					<Route exact path="/account" element={<Profile />} />
+				</Route>
+				{/* Basic Protected Routes Ends */}
 
-        {/* Admin Routes Starts */}
-        <Route element={<AdminProtectedRoutes />}>
-          <Route exact path="/admin/dashboard" element={<Dashboard />} />
-          <Route exact path="/admin/products" element={<ProductList />} />
-          <Route exact path="/admin/product" element={<NewProduct />} />
-          <Route exact path="/admin/product/:id" element={<UpdateProduct />} />
-          <Route exact path="/admin/orders" element={<OrdersList />} />
-          <Route exact path="/admin/order/:id" element={<UpdateOrder />} />
-          <Route exact path="/admin/users" element={<UsersList />} />
-          <Route exact path="/admin/user/:id" element={<UpdateUser />} />
-          <Route exact path="/admin/reviews" element={<ReviewsList />} />
-        </Route>
+				{/* Admin Routes Starts */}
+				<Route element={<AdminProtectedRoutes />}>
+					<Route exact path="/admin/dashboard" element={<Dashboard />} />
+					<Route exact path="/admin/products" element={<ProductList />} />
+					<Route exact path="/admin/product" element={<NewProduct />} />
+					<Route exact path="/admin/product/:id" element={<UpdateProduct />} />
+					<Route exact path="/admin/orders" element={<OrdersList />} />
+					<Route exact path="/admin/order/:id" element={<UpdateOrder />} />
+					<Route exact path="/admin/users" element={<UsersList />} />
+					<Route exact path="/admin/user/:id" element={<UpdateUser />} />
+					<Route exact path="/admin/reviews" element={<ReviewsList />} />
+				</Route>
 
-        {/* Admin Routes Ends */}
+				{/* Admin Routes Ends */}
 
-        {/* Orders Protected Routes Starts */}
-        <Route element={<OrderProtectedRoutes />}>
-          <Route exact path="/order/:id" element={<OrderDetails />} />
-        </Route>
-        <Route element={<OrderProtectedRoutes />}>
-          <Route exact path="/orders" element={<MyOrders />} />
-        </Route>
-        <Route element={<OrderProtectedRoutes />}>
-          <Route exact path="/success" element={<OrderSuccess />} />
-        </Route>
-        <Route element={<OrderProtectedRoutes />}>
-          <Route exact path="/login/shipping" element={<Shipping />} />
-        </Route>
-        <Route element={<OrderProtectedRoutes />}>
-          <Route exact path="/order/confirm" element={<ConfirmOrder />} />
-        </Route>
-        {/* Orders Protected Routes Ends */}
+				{/* Orders Protected Routes Starts */}
+				<Route element={<OrderProtectedRoutes />}>
+					<Route exact path="/order/:id" element={<OrderDetails />} />
+				</Route>
+				<Route element={<OrderProtectedRoutes />}>
+					<Route exact path="/orders" element={<MyOrders />} />
+				</Route>
+				<Route element={<OrderProtectedRoutes />}>
+					<Route exact path="/success" element={<OrderSuccess />} />
+				</Route>
+				<Route element={<OrderProtectedRoutes />}>
+					<Route exact path="/login/shipping" element={<Shipping />} />
+				</Route>
+				<Route element={<OrderProtectedRoutes />}>
+					<Route exact path="/order/confirm" element={<ConfirmOrder />} />
+				</Route>
+				{/* Orders Protected Routes Ends */}
 
-        <Route exact path="/cart" element={<Cart />} />
-        <Route exact path="/about" element={<About />} />
+				<Route exact path="/cart" element={<Cart />} />
+				<Route exact path="/about" element={<About />} />
 
-        <Route exact path="/login" element={<LoginSignUp />} />
-      </Routes>
+				<Route exact path="/login" element={<LoginSignUp />} />
+			</Routes>
 
-      {/* <Footer /> */}
-    </Router>
-  );
+			{/* <Footer /> */}
+		</Router>
+	);
 }
 
 export default App;
