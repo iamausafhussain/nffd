@@ -1,34 +1,34 @@
 .speedDial {
-  position: fixed;
-  right: 16vmax;
-  top: 0.6vmax;
+	position: fixed;
+	right: 16vmax;
+	top: 1vmax;
 }
 
 .speedDialIcon {
-  width: 27px;
-  height: 27px;
-  font-size: 20px;
-  background-color: black;
-  border-radius: 100%;
+	width: 27px;
+	height: 27px;
+	font-size: 20px;
+	background-color: black;
+	border-radius: 100%;
 }
 
 .MuiFab-root {
-  background-color: none !important;
-  width: 27px !important;
-  height: 27px !important;
-  min-width: 27px !important;
-  min-height: 27px !important;
+	background-color: none !important;
+	width: 27px !important;
+	height: 27px !important;
+	min-width: 27px !important;
+	min-height: 27px !important;
 }
 
 .MuiFab-sizeSmall {
-  width: 37px !important;
-  height: 37px !important;
-  min-width: 37px !important;
-  min-height: 37px !important;
+	width: 37px !important;
+	height: 37px !important;
+	min-width: 37px !important;
+	min-height: 37px !important;
 }
 
 @media screen and (max-width: 600px) {
-  .speedDial {
-    right: 0vmax;
-  }
+	.speedDial {
+		right: 0vmax;
+	}
 }

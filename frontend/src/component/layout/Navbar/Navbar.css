@@ -1,4 +1,4 @@
-*,
+/* *,
 *::after,
 *::before {
   margin: 0;
@@ -9,10 +9,8 @@
 body {
   font-family: "Inter", sans-serif;
   font-weight: 300;
-  /* overflow-x: hidden; */
 }
 
-/* Desktop Nav */
 
 .nav-container {
   background: rgba(0, 0, 0, 0.8);
@@ -118,7 +116,6 @@ nav .desktop-nav li a:hover {
   border-radius: 50%;
 }
 
-/* Search Container */
 
 .search-container.hide {
   opacity: 0;
@@ -175,7 +172,6 @@ nav .desktop-nav li a:hover {
   font-size: 17px;
 }
 
-/* Overlay */
 
 .overlay.show {
   position: fixed;
@@ -187,7 +183,6 @@ nav .desktop-nav li a:hover {
   z-index: 100;
 }
 
-/* Quick Links */
 
 .search-container .quick-links {
   background: #fff;
@@ -226,7 +221,6 @@ nav .desktop-nav li a:hover {
   color: #2997ff;
 }
 
-/* Desktop Nav Animation */
 
 .desktop-nav li {
   transition: all 400ms ease;
@@ -238,13 +232,11 @@ nav .desktop-nav li a:hover {
   pointer-events: none;
 }
 
-/* Overlay Animation */
 
 .overlay {
   transition: all 400ms ease;
 }
 
-/* Navigation Menu Items Transition Delay */
 
 .desktop-nav li:nth-of-type(1),
 .desktop-nav.hide li:nth-of-type(10) {
@@ -296,7 +288,6 @@ nav .desktop-nav li a:hover {
   transition-delay: 270ms;
 }
 
-/* Search Container Animation */
 
 .search-container form,
 .search-container .link-search {
@@ -369,14 +360,12 @@ nav .desktop-nav li a:hover {
   transition-delay: 200ms;
 }
 
-/* Hidden Items */
 
 .mobile-nav,
 .mobile-search-container {
   display: none;
 }
 
-/* Media Queries */
 
 @media (max-width: 1100px) {
   .nav-container nav {
@@ -435,7 +424,6 @@ nav .desktop-nav li a:hover {
     opacity: 1;
   }
 
-  /* Mobile Nav */
 
   nav .mobile-nav {
     display: flex;
@@ -492,7 +480,6 @@ nav .desktop-nav li a:hover {
     transition-duration: 200ms;
   }
 
-  /* Bag Icon Animation */
 
   .nav-container.active .mobile-nav .link-bag {
     transform: translateY(8px);
@@ -504,7 +491,6 @@ nav .desktop-nav li a:hover {
     transition: all 1000ms ease;
   }
 
-  /* Search Box */
 
   .mobile-search-container input {
     width: 100%;
@@ -544,13 +530,11 @@ nav .desktop-nav li a:hover {
     background-size: 15px;
   }
 
-  /* Nav Move Up */
 
   .nav-container nav.move-up {
     margin-top: -40px;
   }
 
-  /* Cancel Button */
 
   .mobile-search-container .cancel-btn {
     color: #2997ff;
@@ -571,7 +555,6 @@ nav .desktop-nav li a:hover {
     flex: 1;
   }
 
-  /* Desktop Nav Move Down */
 
   nav .desktop-nav.move-down li:first-child {
     margin-top: 150px;
@@ -582,7 +565,6 @@ nav .desktop-nav li a:hover {
     pointer-events: none;
   }
 
-  /* Quick Links */
 
   .mobile-search-container .search-bar.active ~ .quick-links {
     top: 80px;
@@ -628,8 +610,6 @@ nav .desktop-nav li a:hover {
     color: #2997ff;
   }
 
-  /* Nav Animation */
-
   .nav-container nav {
     transition: all 400ms ease;
   }
@@ -640,4 +620,89 @@ div,
 span,
 a {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+} */
+
+.nav {
+	background-color: #000;
+	z-index: 999;
+	position: sticky;
+	top: 0;
+}
+
+.nav-container {
+	display: flex;
+	flex-direction: row;
+	background: rgb(184, 49, 49);
+	height: 44px;
+	z-index: 300;
+	position: static;
+	left: 0;
+	top: 0;
+	right: 0;
+}
+
+.desktop-nav {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	list-style: none;
+	padding: 10px;
+}
+
+.link-logo {
+	cursor: pointer;
+}
+
+.user-location-delivery {
+	font-weight: 600;
+}
+
+.user-location {
+	display: flex;
+	align-items: center;
+}
+
+.user-location-current {
+	margin: 0 5px 0 0;
+}
+
+.mat-icon {
+	color: #ffa201;
+	margin-right: 3px;
+}
+
+.mat-icon-login {
+	margin-right: 3px;
+}
+
+.nav-li {
+	flex: 0.33;
+}
+
+.login {
+	text-decoration: none;
+}
+
+.login-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100px;
+	height: 35px;
+	cursor: pointer;
+	font-family: "Source Sans Pro", sans-serif;
+	color: #ffa201;
+	font-size: 16px;
+	font-weight: 600;
+	border: 1px solid #ffa20181;
+	border-radius: 4px;
+	background: none;
+	transition: all 0.4s ease;
+}
+.login-button:hover {
+	background: #ffa201;
+	color: white;
+}
+.none {
+	visibility: hidden;
 }

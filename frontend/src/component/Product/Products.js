@@ -11,126 +11,124 @@ import Typography from "@material-ui/core/Typography";
 import Metadata from "../layout/Metadata";
 
 const categories = [
-  "Laptop",
-  "Mens Attire",
-  "Womens Attire",
-  "Kids Attire",
-  "Tablet",
-  "Watch",
-  "Camera",
-  "SmartPhones",
+	"Starter",
+	"Main Course",
+	"Desserts",
+	"Shakes",
+	"Snacks",
+	"Newly Added",
+	"Special",
 ];
 
 const Products = ({ props }) => {
-  const dispatch = useDispatch();
-  const [category, setCategory] = useState("");
-  const [price, setPrice] = useState([0, 500000]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [ratings, setRatings] = useState(0);
-  const alert = useAlert();
+	const dispatch = useDispatch();
+	const [category, setCategory] = useState("");
+	const [price, setPrice] = useState([0, 500000]);
+	const [currentPage, setCurrentPage] = useState(1);
+	const [ratings, setRatings] = useState(0);
+	const alert = useAlert();
 
-  const {
-    products,
-    loading,
-    error,
-    productsCount,
-    resultPerPage,
-    // filteredProductsCount,
-  } = useSelector((state) => state.products);
+	const {
+		products,
+		loading,
+		error,
+		productsCount,
+		resultPerPage,
+		// filteredProductsCount,
+	} = useSelector((state) => state.products);
 
-  const setCurrentPageNo = (e) => {
-    setCurrentPage(e);
-  };
+	const setCurrentPageNo = (e) => {
+		setCurrentPage(e);
+	};
 
-  const priceHandler = (event, newPrice) => {
-    setPrice(newPrice);
-  };
+	const priceHandler = (event, newPrice) => {
+		setPrice(newPrice);
+	};
 
-  // let count = filteredProductsCount;
+	// let count = filteredProductsCount;
 
-  useEffect(() => {
-    if (error) {
-      alert.error(error);
-      dispatch(clearErrors());
-    }
-    dispatch(getProduct(currentPage, price, category, ratings));
-  }, [dispatch, currentPage, price, category, ratings, alert, error]);
+	useEffect(() => {
+		if (error) {
+			alert.error(error);
+			dispatch(clearErrors());
+		}
+		dispatch(getProduct(currentPage, price, category, ratings));
+	}, [dispatch, currentPage, price, category, ratings, alert, error]);
 
-  return (
-    <>
-      {loading ? (
-        <Loader />
-      ) : (
-        <>
-          <Metadata title="Products -- iShopify" />
-          <h2 className="productsHeading">Products</h2>
-          <div className="products">
-            {products &&
-              products.map((product) => (
-                <ProductCard key={product._id} product={product} />
-              ))}
-          </div>
+	return (
+		<>
+			{loading ? (
+				<Loader />
+			) : (
+				<>
+					<Metadata title="Products -- iShopify" />
+					<h2 className="productsHeading">Products</h2>
+					<div className="products">
+						{products &&
+							products.map((product) => (
+								<ProductCard key={product._id} product={product} />
+							))}
+					</div>
 
-          <div className="filterBox">
-            <Typography>Price</Typography>
+					<div className="filterBox">
+						<Typography>Price</Typography>
 
-            <Slider
-              value={price}
-              onChange={priceHandler}
-              valueLabelDisplay="auto"
-              aria-labelledby="range-slider"
-              min={0}
-              max={150000}
-            />
+						<Slider
+							value={price}
+							onChange={priceHandler}
+							valueLabelDisplay="auto"
+							aria-labelledby="range-slider"
+							min={0}
+							max={150000}
+						/>
 
-            <Typography>Categories</Typography>
-            <ul className="categoryBox">
-              {categories.map((category) => (
-                <li
-                  className="category-link"
-                  key={category}
-                  onClick={() => setCategory(category)}
-                >
-                  {category}
-                </li>
-              ))}
-            </ul>
+						<Typography>Categories</Typography>
+						<ul className="categoryBox">
+							{categories.map((category) => (
+								<li
+									className="category-link"
+									key={category}
+									onClick={() => setCategory(category)}>
+									{category}
+								</li>
+							))}
+						</ul>
 
-            <fieldset>
-              <Typography component="legend">Ratings Above</Typography>
-              <Slider
-                value={ratings}
-                onChange={(e, newRating) => setRatings(newRating)}
-                aria-labelledby="continuous-slider"
-                min={0}
-                max={5}
-                valueLabelDisplay="auto"
-              />
-            </fieldset>
-          </div>
+						<fieldset>
+							<Typography component="legend">Ratings Above</Typography>
+							<Slider
+								value={ratings}
+								onChange={(e, newRating) => setRatings(newRating)}
+								aria-labelledby="continuous-slider"
+								min={0}
+								max={5}
+								valueLabelDisplay="auto"
+							/>
+						</fieldset>
+					</div>
 
-          {resultPerPage < productsCount && (
-            <div className="paginationBox">
-              <Pagination
-                activePage={currentPage}
-                itemsCountPerPage={resultPerPage}
-                totalItemsCount={productsCount}
-                onChange={setCurrentPageNo}
-                nextPageText="Next"
-                prevPageText="Prev"
-                firstPageText="First"
-                lastPageText="Last"
-                itemClass="page-item"
-                linkClass="page-link"
-                activeClass="pageItemActive"
-                activeLinkClass="pageLinkActive"
-              />
-            </div>
-          )}
-        </>
-      )}
-    </>
-  );
+					{resultPerPage < productsCount && (
+						<div className="paginationBox">
+							<Pagination
+								activePage={currentPage}
+								itemsCountPerPage={resultPerPage}
+								totalItemsCount={productsCount}
+								onChange={setCurrentPageNo}
+								nextPageText="Next"
+								prevPageText="Prev"
+								firstPageText="First"
+								lastPageText="Last"
+								itemClass="page-item"
+								linkClass="page-link"
+								activeClass="pageItemActive"
+								activeLinkClass="pageLinkActive"
+							/>
+						</div>
+					)}
+				</>
+			)}
+		</>
+	);
 };
 
 export default Products;

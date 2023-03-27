@@ -1,24 +1,94 @@
-.loading {
-  width: 100vw;
-  height: 100vh;
-  background-color: white;
-  display: grid;
-  place-items: center;
-  max-width: 100%;
+@keyframes ldio-zxj6937dir-1 {
+	0% {
+		top: 18px;
+		height: 64px;
+	}
+	50% {
+		top: 30px;
+		height: 40px;
+	}
+	100% {
+		top: 30px;
+		height: 40px;
+	}
+}
+@keyframes ldio-zxj6937dir-2 {
+	0% {
+		top: 20.999999999999996px;
+		height: 58.00000000000001px;
+	}
+	50% {
+		top: 30px;
+		height: 40px;
+	}
+	100% {
+		top: 30px;
+		height: 40px;
+	}
+}
+@keyframes ldio-zxj6937dir-3 {
+	0% {
+		top: 24px;
+		height: 52px;
+	}
+	50% {
+		top: 30px;
+		height: 40px;
+	}
+	100% {
+		top: 30px;
+		height: 40px;
+	}
+}
+.ldio-zxj6937dir div {
+	position: absolute;
+	width: 15px;
+}
+.ldio-zxj6937dir div:nth-child(1) {
+	left: 17.5px;
+	background: #ffb30e;
+	animation: ldio-zxj6937dir-1 0.970873786407767s cubic-bezier(0, 0.5, 0.5, 1)
+		infinite;
+	animation-delay: -0.1941747572815534s;
+}
+.ldio-zxj6937dir div:nth-child(2) {
+	left: 42.5px;
+	background: #2780ed;
+	animation: ldio-zxj6937dir-2 0.970873786407767s cubic-bezier(0, 0.5, 0.5, 1)
+		infinite;
+	animation-delay: -0.0970873786407767s;
+}
+.ldio-zxj6937dir div:nth-child(3) {
+	left: 67.5px;
+	background: #f17228;
+	animation: ldio-zxj6937dir-3 0.970873786407767s cubic-bezier(0, 0.5, 0.5, 1)
+		infinite;
+	animation-delay: undefineds;
 }
 
-.loading > div {
-  width: 10vmax;
-  height: 10vmax;
-  border-bottom: 5px solid rgba(0, 0, 0, 0.719);
-
-  border-radius: 50%;
-
-  animation: loadingRotate 800ms linear infinite;
+.loadingio-spinner-pulse-jirlfgfmq4s {
+	width: 77px;
+	height: 77px;
+	display: inline-block;
+	overflow: hidden;
+	background: none;
+}
+.ldio-zxj6937dir {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	transform: translateZ(0) scale(0.77);
+	backface-visibility: hidden;
+	transform-origin: 0 0; /* see note above */
+}
+.ldio-zxj6937dir div {
+	box-sizing: content-box;
 }
 
-@keyframes loadingRotate {
-  to {
-    transform: rotateZ(-360deg);
-  }
+.loader {
+	width: 99vw;
+	height: 90vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
