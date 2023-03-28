@@ -1,53 +1,54 @@
 .sidebar {
-  display: flex;
-  flex-direction: column;
-  padding: 4vmax 0;
-  background-color: rgb(255, 255, 255);
+	display: flex;
+	flex-direction: column;
+	padding: 4vmax 0;
+	background-color: rgb(255, 255, 255);
 }
 
 .sidebar a {
-  text-decoration: none;
-  color: rgba(0, 0, 0, 0.493);
-  font: 200 1rem "Roboto";
-  padding: 1.5rem 2rem;
-  transition: all 0.5s;
+	text-decoration: none;
+	color: rgba(0, 0, 0, 0.493);
+	font: 600 1rem;
+	padding: 1.5rem 2rem;
+	transition: all 0.5s;
 }
 
 .sidebar a:hover {
-  /* background: tomato; */
-  color: tomato;
+	/* background: tomato; */
+	color: tomato;
 }
 
 .sidebar > a:first-child {
-  margin-bottom: 10px;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  background: none;
+	margin-bottom: 10px;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	background: none;
 }
 
 .sidebar > a > img {
-  width: 30%;
-  transition: all 0.5s;
+	width: 30%;
+	transition: all 0.5s;
 }
 
 .sidebar > a > img:hover {
-  filter: drop-shadow(0 0 10px tomato);
+	filter: drop-shadow(0 0 10px tomato);
 }
 
 .sidebar a > p {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
+	font: 600 1rem;
 }
 
 .sidebar a > p > svg {
-  margin-right: 0.5rem;
+	margin-right: 0.5rem;
 }
 
 .sidebar a > p > svg {
-  margin-right: 0.5rem;
+	margin-right: 0.5rem;
 }
 
 .MuiTypography-root {
-  background-color: inherit !important;
+	background-color: inherit !important;
 }
