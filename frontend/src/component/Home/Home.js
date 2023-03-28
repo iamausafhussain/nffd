@@ -6,6 +6,7 @@ import MetaData from "../layout/Metadata";
 import { clearErrors, getProduct } from "../../actions/productAction";
 import { useSelector, useDispatch } from "react-redux";
 import { useAlert } from "react-alert";
+import Banner from "./Banner";
 
 const Home = () => {
 	const alert = useAlert();
@@ -28,13 +29,15 @@ const Home = () => {
 				<>
 					<MetaData title="iShopify" />
 
-					<div className="banner">
+					{/* <div className="banner">
 						<a href="#container">
 							<span className="mouse">
 								<span className="mouse-wheel"></span>
 							</span>
 						</a>
-					</div>
+					</div> */}
+
+					<Banner />
 
 					<h2 className="homeHeading">Featured Products</h2>
 

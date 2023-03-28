@@ -45,7 +45,7 @@ import NotFound from "./component/layout/NotFound/NotFound";
 function App() {
 	const { isAuthenticated, user } = useSelector((state) => state.user);
 	const [stripeApiKey, setStripeApiKey] = useState(
-		"pk_test_51LJLbeSF4BaggX0f0O9sS4qT3X6mE4Tf8AxoOqw921g9x8I4kiouLIVeXeF57PZbxtUz2XzF3WkwLHmeZg45VULh00cB6eh474"
+		"pk_test_51Morf2SCowwJttNZkSwm0I7skrhb64wHT0JrFhkz6nuONLZM5wBb0tfnpFONoLEY4uJxOnvMBCNNzLNBRazaoSMt00aCDPW8B6"
 	);
 
 	async function getStripeApiKey() {
@@ -53,7 +53,7 @@ function App() {
 		// console.log(data);
 
 		setStripeApiKey(
-			"pk_test_51LJLbeSF4BaggX0f0O9sS4qT3X6mE4Tf8AxoOqw921g9x8I4kiouLIVeXeF57PZbxtUz2XzF3WkwLHmeZg45VULh00cB6eh474"
+			"pk_test_51Morf2SCowwJttNZkSwm0I7skrhb64wHT0JrFhkz6nuONLZM5wBb0tfnpFONoLEY4uJxOnvMBCNNzLNBRazaoSMt00aCDPW8B6"
 		);
 	}
 
