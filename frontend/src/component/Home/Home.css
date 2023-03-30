@@ -161,7 +161,7 @@ a {
 	border-bottom: 1px solid rgba(21, 21, 21, 0.5);
 	width: 20vmax;
 	padding: 1vmax;
-	margin: 5vmax auto;
+	margin: 0 auto;
 	color: rgb(0, 0, 0, 0.7);
 }
 
@@ -515,10 +515,16 @@ a {
 
 	.productCard > div > span {
 		margin: 0 0.5vmax;
-		font: 300 1vmax "Roboto";
+		font: 300 1vmax;
 	}
 
 	.productCardReactStars {
 		width: 7px;
+	}
+	.slider-description {
+		position: absolute;
+		/* height: 300px; */
+		top: 130px;
+		left: 40px;
 	}
 }

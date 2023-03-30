@@ -39,7 +39,7 @@ const Home = () => {
 
 					<Banner />
 
-					<h2 className="homeHeading">Featured Products</h2>
+					<h2 className="homeHeading">Featured Foods</h2>
 
 					<div className="container" id="container">
 						{products &&
