@@ -61,13 +61,13 @@ const Banner = () => {
 						<Link to="/products">
 							<button class="slider-delivery-button first-button">
 								<FastfoodIcon />
-								<p>Foods</p>
+								<p>Restaurants</p>
 							</button>
 						</Link>
 						<Link to="/">
 							<button class="slider-delivery-button">
 								<TwoWheelerIcon />
-								<p>Pickup</p>
+								<p>DineIn</p>
 							</button>
 						</Link>
 					</div>

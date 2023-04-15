@@ -29,13 +29,14 @@ const NewProduct = () => {
 	const [imagePreview, setImagesPreview] = useState([]);
 
 	const categories = [
-		"Starter",
-		"Main Course",
-		"Desserts",
-		"Shakes",
-		"Snacks",
-		"Newly Added",
-		"Special",
+		"Eat Street",
+		"Just Eat",
+		"Aangan Premium",
+		"Swosti Grand",
+		"Absolute Barbeque",
+		"Barbeque Nation",
+		"Udupi Kitchen",
+		"Chandni Restro",
 	];
 
 	const createProductImagesChange = (e) => {

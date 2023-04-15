@@ -78,7 +78,7 @@
 	text-decoration: none;
 	justify-content: center;
 	color: #f17228;
-	width: 100px;
+	width: 150px;
 	height: 30px;
 	font-size: 16px;
 	font-weight: 600;
@@ -91,6 +91,10 @@
 
 a {
 	text-decoration: none;
+}
+
+.slider-delivery-button > p {
+	margin: 0 0 0 10px;
 }
 
 .slider-delivery-button:hover {

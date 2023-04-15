@@ -10,7 +10,7 @@ function Navbar() {
 	const [navColor, setnavColor] = useState("white");
 	const [navText, setnavText] = useState("black");
 	const { user } = useSelector((state) => state.user);
-	const { cartItems } = useSelector((state) => state.cart);
+	const { shippingInfo } = useSelector((state) => state.cart);
 
 	const listenScrollEvent = () => {
 		window.scrollY > 10 ? setnavColor("#000") : setnavColor("transparent");
@@ -18,6 +18,7 @@ function Navbar() {
 	};
 
 	useEffect(() => {
+		console.log("shippingInfo nav: ", shippingInfo);
 		window.addEventListener("scroll", listenScrollEvent);
 		return () => {
 			window.removeEventListener("scroll", listenScrollEvent);
@@ -41,14 +42,20 @@ function Navbar() {
 							<img src={Logo} className="link-logo" />
 						</a>
 					</li>
-					<li className="nav-li nav-location">
-						<div className="user-location">
-							<p className="user-location-delivery">Deliver to:</p>
-							<LocationOnIcon className="mat-icon" />
-							<p className="user-location-current">Current Location</p>
-							<h4>Infocity, Bhubaneswar</h4>
-						</div>
-					</li>
+					{shippingInfo && (
+						<li className="nav-li nav-location">
+							<div className="user-location">
+								<p className="user-location-delivery">Deliver to:</p>
+								<LocationOnIcon className="mat-icon" />
+								<p className="user-location-current">Current Location</p>
+								<h4>
+									{shippingInfo.address}, {shippingInfo.city},
+									{shippingInfo.pinCode}
+								</h4>
+							</div>
+						</li>
+					)}
+
 					{!user ? (
 						<Link className="login nav-li" to="/login">
 							<li>

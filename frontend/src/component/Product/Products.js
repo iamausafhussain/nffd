@@ -11,19 +11,20 @@ import Typography from "@material-ui/core/Typography";
 import Metadata from "../layout/Metadata";
 
 const categories = [
-	"Starter",
-	"Main Course",
-	"Desserts",
-	"Shakes",
-	"Snacks",
-	"Newly Added",
-	"Special",
+	"Eat Street",
+	"Just Eat",
+	"Aangan Premium",
+	"Swosti Grand",
+	"Absolute Barbeque",
+	"Barbeque Nation",
+	"Udupi Kitchen",
+	"Chandni Restro",
 ];
 
 const Products = ({ props }) => {
 	const dispatch = useDispatch();
 	const [category, setCategory] = useState("");
-	const [price, setPrice] = useState([0, 500000]);
+	const [price, setPrice] = useState([0, 2000]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [ratings, setRatings] = useState(0);
 	const alert = useAlert();
@@ -62,7 +63,7 @@ const Products = ({ props }) => {
 			) : (
 				<>
 					<Metadata title="Products -- iShopify" />
-					<h2 className="productsHeading">Foods</h2>
+					<h2 className="productsHeading">Restaurants</h2>
 					<div className="products">
 						{products &&
 							products.map((product) => (
@@ -79,10 +80,10 @@ const Products = ({ props }) => {
 							valueLabelDisplay="auto"
 							aria-labelledby="range-slider"
 							min={0}
-							max={150000}
+							max={2000}
 						/>
 
-						<Typography>Categories</Typography>
+						<Typography>Restaurants</Typography>
 						<ul className="categoryBox">
 							{categories.map((category) => (
 								<li
