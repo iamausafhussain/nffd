@@ -41,6 +41,7 @@ import UsersList from "./component/admin/UsersList";
 import UpdateUser from "./component/admin/UpdateUser";
 import ReviewsList from "./component/admin/ReviewsList";
 import NotFound from "./component/layout/NotFound/NotFound";
+import Dinein from "./component/Dinein/Dinein";
 
 function App() {
 	const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -91,6 +92,7 @@ function App() {
 						</Elements>
 					}
 				/>
+				<Route exact path="/dinein" element={<Dinein />} />
 
 				<Route path="/password/forgot" exact element={<ForgotPassword />} />
 

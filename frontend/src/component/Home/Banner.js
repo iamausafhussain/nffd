@@ -8,9 +8,9 @@ import ImageOne from "../../images/header.png";
 import ImageTwo from "../../images/fooddeltwo.jpg";
 import ImageThree from "../../images/fooddelone.jpg";
 import FastfoodIcon from "@mui/icons-material/Fastfood";
-import TwoWheelerIcon from "@mui/icons-material/TwoWheeler";
+import BrunchDiningIcon from "@mui/icons-material/BrunchDining";
 
-const Banner = () => {
+const Banner = ({ headerTitle, view }) => {
 	const [imageArr, setImageArr] = useState(
 		{
 			image: ImageOne,
@@ -30,7 +30,7 @@ const Banner = () => {
 		slidesToShow: 1,
 		slidesToScroll: 1,
 		autoplay: true,
-		autoplaySpeed: 2000,
+		autoplaySpeed: 4000,
 		pauseOnHover: true,
 		innerHeight: "100vh",
 	};
@@ -51,7 +51,7 @@ const Banner = () => {
 
 			<div className="slider-description">
 				<div className="slider-description-header slider-info">
-					<p>Are you starving?</p>
+					<p>{headerTitle}</p>
 				</div>
 				<div className="slider-description-details slider-info">
 					<p>Withing a few clicks, find the meals that are accesible to you</p>
@@ -59,16 +59,23 @@ const Banner = () => {
 				<div className="slider-description-card slider-info">
 					<div className="slider-card-header">
 						<Link to="/products">
-							<button class="slider-delivery-button first-button">
+							<button className="slider-delivery-button first-button">
 								<FastfoodIcon />
 								<p>Restaurants</p>
 							</button>
 						</Link>
-						<Link to="/">
-							<button class="slider-delivery-button">
-								<TwoWheelerIcon />
-								<p>DineIn</p>
-							</button>
+						<Link to="/dinein">
+							{view == "dinein" ? (
+								<button className="slider-delivery-button dinein">
+									<BrunchDiningIcon />
+									<p>DineIn</p>
+								</button>
+							) : (
+								<button className="slider-delivery-button">
+									<BrunchDiningIcon />
+									<p>DineIn</p>
+								</button>
+							)}
 						</Link>
 					</div>
 					<hr />

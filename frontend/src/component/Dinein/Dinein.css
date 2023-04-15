@@ -1,0 +1,104 @@
+.dineinContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.dineinSelects {
+	width: 100%;
+	margin: 40px 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.dineinSelectContainer {
+	display: flex;
+	margin: 10px 0;
+}
+
+.dineSelect {
+	width: 400px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.dineinSelect > p {
+	margin: 20px 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.selectTwo {
+	margin: 0 0 0 10px;
+}
+
+select {
+	padding: 1vmax 4vmax;
+	padding-right: 1vmax;
+	width: 100%;
+	box-sizing: border-box;
+	border: 1px solid rgba(0, 0, 0, 0.267);
+	border-radius: 4px;
+	font: 300 0.9vmax;
+	outline: none;
+}
+
+.submitButton {
+	width: 300px;
+	height: 40px;
+	color: white;
+	background: #fc7054;
+	border: none;
+	cursor: pointer;
+	border-radius: 4px;
+	transition: all 0.4s ease;
+}
+
+.submitButton:hover {
+	background: #ff5f3f;
+}
+
+.bookingDetails {
+	margin: 3.5vmax 0;
+	width: 100vw;
+	max-width: 100%;
+	padding: 0 7vmax;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.bookingInfo {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookingAttr {
+	display: flex;
+}
+
+.myOrdersTable {
+	background-color: rgb(255, 255, 255);
+}
+
+.myOrdersTable div {
+	font: 300 1vmax "Roboto";
+	/* color: rgba(0, 0, 0, 0.678); */
+	border: none;
+}
+
+.myOrdersTable a {
+	color: rgba(0, 0, 0, 0.527);
+	transition: all 0.5s;
+}
+
+.myOrdersTable a:hover {
+	color: tomato;
+}

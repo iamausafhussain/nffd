@@ -29,15 +29,7 @@ const Home = () => {
 				<>
 					<MetaData title="iShopify" />
 
-					{/* <div className="banner">
-						<a href="#container">
-							<span className="mouse">
-								<span className="mouse-wheel"></span>
-							</span>
-						</a>
-					</div> */}
-
-					<Banner />
+					<Banner headerTitle={"Are your starving?"} />
 
 					<h2 className="homeHeading">Featured Foods</h2>
 

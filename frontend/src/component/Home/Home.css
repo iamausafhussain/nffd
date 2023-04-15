@@ -119,6 +119,10 @@ a {
 	margin-right: 10px;
 }
 
+.dinein {
+	background: #fef1ea;
+}
+
 .slick-slider-init > button {
 	display: none !important;
 }
