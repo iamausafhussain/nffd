@@ -13,55 +13,60 @@ import PeopleIcon from "@material-ui/icons/People";
 import RateReviewIcon from "@material-ui/icons/RateReview";
 
 const Sidebar = () => {
-  return (
-    <div className="sidebar">
-      <Link to="/">
-        <img src={logo} alt="profile" />
-      </Link>
-      <Link to="/admin/dashboard">
-        <p>
-          <DashboardIcon /> Dashboard
-        </p>
-      </Link>
-      <a>
-        <TreeView
-          defaultCollapseIcon={<ExpandMoreIcon />}
-          defaultExpandIcon={<ImportExportIcon />}
-        >
-          <TreeItem nodeId="1" label="Products">
-            <Link to="/admin/products">
-              <TreeItem nodeId="2" label="All" icon={<PostAddIcon />} />
-            </Link>
+	return (
+		<div className="sidebar">
+			<Link to="/">
+				<img src={logo} alt="profile" />
+			</Link>
+			<Link to="/admin/dashboard">
+				<p>
+					<DashboardIcon /> Dashboard
+				</p>
+			</Link>
+			<a>
+				<TreeView
+					defaultCollapseIcon={<ExpandMoreIcon />}
+					defaultExpandIcon={<ImportExportIcon />}>
+					<TreeItem nodeId="1" label="Foods">
+						<Link to="/admin/products">
+							<TreeItem nodeId="2" label="All" icon={<PostAddIcon />} />
+						</Link>
 
-            <Link to="/admin/product">
-              <TreeItem nodeId="3" label="Create" icon={<AddIcon />} />
-            </Link>
-          </TreeItem>
-        </TreeView>
-      </a>
+						<Link to="/admin/product">
+							<TreeItem nodeId="3" label="Create" icon={<AddIcon />} />
+						</Link>
+					</TreeItem>
+				</TreeView>
+			</a>
 
-      <Link to="/admin/orders">
-        <p>
-          <ListAltIcon />
-          Orders
-        </p>
-      </Link>
+			<Link to="/admin/orders">
+				<p>
+					<ListAltIcon />
+					Orders
+				</p>
+			</Link>
 
-      <Link to="/admin/users">
-        <p>
-          <PeopleIcon />
-          Users
-        </p>
-      </Link>
+			<Link to="/admin/users">
+				<p>
+					<PeopleIcon />
+					Users
+				</p>
+			</Link>
 
-      <Link to="/admin/reviews">
-        <p>
-          <RateReviewIcon />
-          Reviews
-        </p>
-      </Link>
-    </div>
-  );
+			<Link to="/admin/reviews">
+				<p>
+					<RateReviewIcon />
+					Reviews
+				</p>
+			</Link>
+			<Link to="/admin/dinein">
+				<p>
+					<RateReviewIcon />
+					Dinein
+				</p>
+			</Link>
+		</div>
+	);
 };
 
 export default Sidebar;

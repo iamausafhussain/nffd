@@ -41,7 +41,8 @@ import UsersList from "./component/admin/UsersList";
 import UpdateUser from "./component/admin/UpdateUser";
 import ReviewsList from "./component/admin/ReviewsList";
 import NotFound from "./component/layout/NotFound/NotFound";
-import Dinein from "./component/Dinein/Dinein";
+import Dinein from "./component/admin/Dinein";
+import DineinUser from "./component/Dinein/Dinein";
 
 function App() {
 	const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -92,7 +93,7 @@ function App() {
 						</Elements>
 					}
 				/>
-				<Route exact path="/dinein" element={<Dinein />} />
+				<Route exact path="/dinein" element={<DineinUser />} />
 
 				<Route path="/password/forgot" exact element={<ForgotPassword />} />
 
@@ -115,6 +116,7 @@ function App() {
 					<Route exact path="/admin/users" element={<UsersList />} />
 					<Route exact path="/admin/user/:id" element={<UpdateUser />} />
 					<Route exact path="/admin/reviews" element={<ReviewsList />} />
+					<Route exact path="/admin/dinein" element={<Dinein />} />
 				</Route>
 
 				{/* Admin Routes Ends */}

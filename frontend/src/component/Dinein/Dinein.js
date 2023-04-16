@@ -4,14 +4,18 @@ import MetaData from "../layout/Metadata";
 import Banner from "../Home/Banner";
 import { DataGrid } from "@material-ui/data-grid";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useSelector } from "react-redux";
 
-const Dinein = () => {
+const DineinUser = () => {
 	const [restaurant, setRestaurant] = useState("");
+	const [bookArr, setBookArr] = useState([]);
 	const [table, setTable] = useState(0);
 	const [restaurantName, setRestaurantName] = useState(
 		localStorage.getItem("restaurant")
 	);
 	const [tableNumber, SetTableNumber] = useState(localStorage.getItem("table"));
+	const { user } = useSelector((state) => state.user);
+
 	const restaurants = [
 		"Eat Street",
 		"Just Eat",
@@ -57,11 +61,25 @@ const Dinein = () => {
 	];
 	const rows = [];
 
-	rows.push({
-		id: 1,
-		restaurantName: localStorage.getItem("restaurant"),
-		tableNumber: localStorage.getItem("table"),
-	});
+	for (
+		let index = 0;
+		index < JSON.parse(localStorage.getItem("dine")).length;
+		index++
+	) {
+		if (
+			JSON.parse(localStorage.getItem("dine"))[index]["username"] == user.name
+		) {
+			rows.push({
+				id: index + 1,
+				restaurantName: JSON.parse(localStorage.getItem("dine"))[index][
+					"restaurantName"
+				],
+				tableNumber: JSON.parse(localStorage.getItem("dine"))[index][
+					"tableNumber"
+				],
+			});
+		}
+	}
 
 	// useEffect(() => {
 	// 	setDineArr(localStorage.getItem("dineOptions"));
@@ -70,13 +88,40 @@ const Dinein = () => {
 	const tables = [1, 2, 3, 4, 5, 6, 7];
 
 	const AddDineOptions = () => {
+		var data = {
+			username: user.name,
+			restaurantName: restaurant,
+			tableNumber: table,
+		};
+		var dineArr = [];
+		dineArr = JSON.parse(localStorage.getItem("dine")) || [];
+		dineArr.push(data);
+		localStorage.setItem("dine", JSON.stringify(dineArr));
+
 		localStorage.setItem("restaurant", restaurant);
 		localStorage.setItem("table", table);
 
 		setRestaurantName(localStorage.getItem("restaurant"));
 		SetTableNumber(localStorage.getItem("table"));
-
-		console.log(rows);
+		for (
+			let index = 0;
+			index < JSON.parse(localStorage.getItem("dine")).length;
+			index++
+		) {
+			if (
+				JSON.parse(localStorage.getItem("dine"))[index]["username"] == user.name
+			) {
+				rows.push({
+					id: 1,
+					restaurantName: JSON.parse(localStorage.getItem("dine"))[index][
+						"restaurantName"
+					],
+					tableNumber: JSON.parse(localStorage.getItem("dine"))[index][
+						"tableNumber"
+					],
+				});
+			}
+		}
 	};
 
 	function RemoveDineBooking() {
@@ -127,7 +172,7 @@ const Dinein = () => {
 						</button>
 					</div>
 
-					{restaurantName !== "" ? (
+					{bookArr !== [] ? (
 						<div className="bookingDetails">
 							<h3>Your Bookings</h3>
 							<DataGrid
@@ -150,4 +195,4 @@ const Dinein = () => {
 	);
 };
 
-export default Dinein;
+export default DineinUser;
