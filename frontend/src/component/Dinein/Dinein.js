@@ -43,21 +43,6 @@ const DineinUser = () => {
 			headerName: "Table",
 			flex: 0.3,
 		},
-		{
-			field: "actions",
-			flex: 0.3,
-			headerName: "Actions",
-			minWidth: 150,
-			type: "number",
-			sortable: false,
-			renderCell: (params) => {
-				return (
-					<>
-						<DeleteIcon onClick={RemoveDineBooking} />
-					</>
-				);
-			},
-		},
 	];
 	const rows = [];
 

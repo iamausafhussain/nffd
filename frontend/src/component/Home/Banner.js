@@ -10,7 +10,13 @@ import ImageThree from "../../images/fooddelone.jpg";
 import FastfoodIcon from "@mui/icons-material/Fastfood";
 import BrunchDiningIcon from "@mui/icons-material/BrunchDining";
 
-const Banner = ({ headerTitle, view }) => {
+const Banner = ({
+	headerTitle,
+	view,
+	searchFood,
+	setSearchFood,
+	HandleSearchFood,
+}) => {
 	const [imageArr, setImageArr] = useState(
 		{
 			image: ImageOne,
@@ -22,6 +28,10 @@ const Banner = ({ headerTitle, view }) => {
 			image: ImageThree,
 		}
 	);
+
+	// const HandleSearchFood = (e) => {
+	// 	setSearchFood(e.target.value);
+	// };
 
 	const settings = {
 		dots: false,
@@ -80,8 +90,20 @@ const Banner = ({ headerTitle, view }) => {
 					</div>
 					<hr />
 					<div className="slider-card-search">
-						<input placeholder="Search Foods" className="slider-input" />
-						<button className="search-button">Find Food</button>
+						<input
+							value={searchFood}
+							onChange={(e) => {
+								setSearchFood(e.target.value);
+							}}
+							placeholder="Search Foods"
+							className="slider-input"
+						/>
+
+						<Link to="/">
+							<button className="search-button" onClick={HandleSearchFood}>
+								Find Foods
+							</button>
+						</Link>
 					</div>
 				</div>
 			</div>

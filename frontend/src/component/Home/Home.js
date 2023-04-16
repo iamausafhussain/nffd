@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./Home.css";
 import Loader from "../layout/Loader/Loader";
 import ProductCard from "./ProductCard.js";
@@ -9,9 +9,12 @@ import { useAlert } from "react-alert";
 import Banner from "./Banner";
 
 const Home = () => {
+	const [searchFood, setSearchFood] = useState("");
 	const alert = useAlert();
 	const dispatch = useDispatch();
 	const { loading, error, products } = useSelector((state) => state.products);
+	const [filterFood, setFilteredFood] = useState();
+	const [isFilterAdded, setIsFilterAdded] = useState(false);
 
 	useEffect(() => {
 		if (error) {
@@ -19,7 +22,18 @@ const Home = () => {
 			dispatch(clearErrors());
 		}
 		dispatch(getProduct());
+		setFilteredFood(products);
 	}, [dispatch, error, alert]);
+
+	const HandleSearchFood = () => {
+		console.log("before: ", products);
+		const searchList = products.filter((item) => {
+			return item.name.toLowerCase().includes(searchFood.toLowerCase());
+		});
+		setIsFilterAdded(true);
+		setFilteredFood(searchList);
+		console.log("after: ", filterFood);
+	};
 
 	return (
 		<>
@@ -29,13 +43,19 @@ const Home = () => {
 				<>
 					<MetaData title="iShopify" />
 
-					<Banner headerTitle={"Are your starving?"} />
+					<Banner
+						headerTitle={"Are you starving?"}
+						searchFood={searchFood}
+						setSearchFood={setSearchFood}
+						HandleSearchFood={HandleSearchFood}
+					/>
 
 					<h2 className="homeHeading">Featured Foods</h2>
 
 					<div className="container" id="container">
-						{products &&
-							products.map((product) => <ProductCard product={product} />)}
+						{isFilterAdded == false
+							? products.map((product) => <ProductCard product={product} />)
+							: filterFood.map((product) => <ProductCard product={product} />)}
 					</div>
 				</>
 			)}
