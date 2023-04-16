@@ -30,7 +30,7 @@ const DineinUser = () => {
 	const columns = [
 		{
 			field: "id",
-			headerName: "Id",
+			headerName: "Booking Id",
 			flex: 1,
 		},
 		{

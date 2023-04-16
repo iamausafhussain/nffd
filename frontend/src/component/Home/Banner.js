@@ -80,7 +80,7 @@ const Banner = ({ headerTitle, view }) => {
 					</div>
 					<hr />
 					<div className="slider-card-search">
-						<input placeholder="Search Foods " className="slider-input" />
+						<input placeholder="Search Foods" className="slider-input" />
 						<button className="search-button">Find Food</button>
 					</div>
 				</div>
