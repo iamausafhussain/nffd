@@ -1,4 +1,4 @@
-.dashboard {
+/* .dashboard {
 	width: 100vw;
 	max-width: 100%;
 	display: grid;
@@ -8,7 +8,6 @@
 
 .productListContainer {
 	margin: 3.5vmax 0;
-	/* width: 80vw; */
 	max-width: 100%;
 	padding: 0 7vmax;
 	box-sizing: border-box;
@@ -55,7 +54,7 @@
 }
 
 .MuiDataGrid-cell--textRight {
-	/* line-height: 10px !important; */
+
 }
 
 .MuiDataGrid-columnHeader div {
@@ -66,4 +65,4 @@
 	.productListTable div {
 		font: 300 4vw "Roboto";
 	}
-}
+} */

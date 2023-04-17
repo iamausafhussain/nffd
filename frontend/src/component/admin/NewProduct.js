@@ -93,7 +93,7 @@ const NewProduct = () => {
 
 	return (
 		<>
-			<MetaData title="Create Product" />
+			<MetaData title="Create Foods" />
 			<div className="dashboard">
 				<Sidebar />
 				<div className="newProductContainer">
@@ -101,13 +101,13 @@ const NewProduct = () => {
 						className="createProductForm"
 						encType="multipart/form-data"
 						onSubmit={createProductSubmitHandler}>
-						<h1>Create Product</h1>
+						<h1>Create Food</h1>
 
 						<div>
 							<SpellcheckIcon />
 							<input
 								type="text"
-								placeholder="Product name"
+								placeholder="Food name"
 								required
 								value={name}
 								onChange={(e) => setName(e.target.value)}
@@ -118,7 +118,7 @@ const NewProduct = () => {
 							<AttachMoneyIcon />
 							<input
 								type="price"
-								placeholder="price"
+								placeholder="Price"
 								required
 								onChange={(e) => setPrice(e.target.value)}
 							/>
@@ -127,7 +127,7 @@ const NewProduct = () => {
 						<div>
 							<DescriptionIcon />
 							<textarea
-								placeholder="product description"
+								placeholder="Food description"
 								value={description}
 								required
 								onChange={(e) => setDescription(e.target.value)}
