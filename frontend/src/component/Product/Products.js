@@ -28,6 +28,9 @@ const Products = ({ props }) => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [ratings, setRatings] = useState(0);
 	const alert = useAlert();
+	const [searchText, setSearchText] = useState("");
+	const [searchFilter, setSearchFilter] = useState([]);
+	const [isFilterAdded, setIsFilterAdded] = useState(false);
 
 	const {
 		products,
@@ -53,8 +56,17 @@ const Products = ({ props }) => {
 			alert.error(error);
 			dispatch(clearErrors());
 		}
-		dispatch(getProduct(currentPage, price, category, ratings));
-	}, [dispatch, currentPage, price, category, ratings, alert, error]);
+		dispatch(getProduct(currentPage, price, category, ratings, searchText));
+	}, [
+		dispatch,
+		currentPage,
+		price,
+		category,
+		ratings,
+		alert,
+		error,
+		searchText,
+	]);
 
 	return (
 		<>
@@ -106,6 +118,12 @@ const Products = ({ props }) => {
 								valueLabelDisplay="auto"
 							/>
 						</fieldset>
+						<input
+							className="search"
+							placeholder="Search Foods"
+							value={searchText}
+							onChange={(e) => setSearchText(e.target.value)}
+						/>
 					</div>
 
 					{resultPerPage < productsCount && (

@@ -26,13 +26,11 @@ const Home = () => {
 	}, [dispatch, error, alert]);
 
 	const HandleSearchFood = () => {
-		console.log("before: ", products);
 		const searchList = products.filter((item) => {
 			return item.name.toLowerCase().includes(searchFood.toLowerCase());
 		});
 		setIsFilterAdded(true);
 		setFilteredFood(searchList);
-		console.log("after: ", filterFood);
 	};
 
 	return (
